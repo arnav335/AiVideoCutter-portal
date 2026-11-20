@@ -9,8 +9,15 @@ const MIME = {
   ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
   ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".csv": "text/csv; charset=utf-8",
   ".ico": "image/x-icon",
   ".woff2": "font/woff2",
+  ".ttf": "font/ttf",
+  ".otf": "font/otf",
   ".mp4": "video/mp4",
   ".m4a": "audio/mp4",
   ".mp3": "audio/mpeg",
@@ -52,6 +59,19 @@ export async function readJsonBody(req, limit = 5 * 1024 * 1024) {
   } catch {
     throw new HttpError(400, "Request body is not valid JSON.");
   }
+}
+
+// The whole request body as a Buffer (used for font uploads).
+export async function readRawBody(req, limit) {
+  const chunks = [];
+  let size = 0;
+
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > limit) throw new HttpError(413, "That file is too large.");
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks);
 }
 
 // Serve a file with HTTP Range support so <video> can seek.

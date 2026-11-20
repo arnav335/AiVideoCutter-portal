@@ -1,3 +1,4 @@
+import "./theme.js";
 import { api } from "./api.js";
 import { h, toast } from "./dom.js";
 import { mountHome, topbar } from "./home.js";
@@ -29,7 +30,8 @@ async function route() {
     const job = await api.job(id);
     if (mine !== token) return;
 
-    const wantEditor = mode === "edit" || (job.state === "review" && mode !== "progress");
+    const justText = job.settings?.useAi === false && job.settings?.doBroll === false;
+    const wantEditor = mode === "edit" || (job.state === "review" && mode !== "progress" && !justText);
     if (wantEditor && job.base) {
       view = await mountReview(root, id, { topbar });
     } else {

@@ -1,0 +1,53 @@
+<role>
+(Block A-short)
+</role>
+
+<task>
+CHOOSE. A talking video has been split into numbered lines, and every line already has a plain description of a possible cutaway picture. Read ALL the lines first so you understand the video, then decide where pictures are really worth showing.
+</task>
+
+<input>
+A JSON list of lines in time order: { "id", "time", "line" (the spoken words), "picture" (the description already written) }.
+</input>
+
+<what_earns_a_picture>
+A picture earns its place when it makes the viewer understand or remember something faster than the voice alone. Strong candidates:
+- real numbers, amounts, percentages, comparisons, goals, formulas, lists of examples, steps, a before and after;
+- a named brand, platform, company, product, app, channel or creator, when it is the subject of the line (first clear mention);
+- a vivid behaviour, scene, story beat or historical moment;
+- a clear metaphor, a warning, a trap, a surprising claim, the hook at the start and the key lesson at the end;
+- a physical thing or material whose look is the point.
+A picture is wasted on greetings, introductions, sign-offs, calls to action (like, subscribe, comment), transitions ("so", "anyway"), filler, plain opinions with nothing to show, and lines whose picture would only repeat the previous one. If two neighbouring lines are the same sentence said twice (a retake), only the last one can get a picture. The same brand does not need a second logo within about 30 seconds. Lines you leave out simply stay as plain video.
+</what_earns_a_picture>
+
+<viewer_attention>
+Choose the lines where the viewer's attention or emotion peaks, not only the lines with facts. Strong moments: the hook in the first seconds (curiosity), the claim that surprises, the line that names a fear or a desire, the numbers that prove something, the moment of contrast (before and after, amateur and professional), the turning point, and the closing lesson. Prefer a picture when the voice alone would let the viewer's attention slip, and leave plain video when the speaker's face is already the strongest thing on screen (a direct, emotional, personal sentence). Alternate moments of high energy with calmer ones so the viewer is not tired by a wall of urgent pictures.
+</viewer_attention>
+
+<grouping>
+Group two or more lines that sit directly next to each other and talk about the same subject, so one picture stays on screen for all of them. Keep groups short (usually 2 to 4 lines, under about 25 seconds in total) and only group lines that are directly next to each other, in order. Give each group ONE description: a single plain sentence of information about what the shared picture shows, covering all its lines, keeping numbers and names. No style words.
+</grouping>
+
+<pacing>
+Think like an editor: spread the pictures through the WHOLE video, with roughly one picture for every 8 to 12 seconds of speech. Do not leave a long stretch without a picture unless its lines truly have nothing to show. Alternate between light moments and heavy ones, and give the opening hook and the closing lesson strong pictures.
+</pacing>
+
+<output_contract>
+Reply with JSON only (no prose, no markdown fences, no code block, no artifact), exactly this shape:
+{"notes":"...","pictures":[{"ids":["b003"]},{"ids":["b005","b006"],"description":"..."}]}
+- "notes": two short sentences: what the video argues, and how you spread the pictures.
+- Every entry in "pictures" is one picture. "ids" lists the line ids it covers, in time order, directly next to each other. One id = a line with its own picture (keep its description; give no "description"). Two or more ids = a group sharing one picture (give "description").
+- Lines that do not appear in any entry get no picture. Each id appears at most once. Use only ids you were given.
+- Entries are in time order.
+</output_contract>
+
+<example>
+LINES:
+[{"id":"b001","time":"0:00-0:04","line":"Motivation is a trap.","picture":"A person tempted by a trophy that is bait."},{"id":"b002","time":"0:04-0:07","line":"Subscribe to the channel.","picture":"A subscribe button."},{"id":"b003","time":"0:07-0:12","line":"In its first month skool made 3,104 dollars and YouTube ads made 2,119.","picture":"Comparison of 3,104 dollars for skool and 2,119 dollars for YouTube ads."}]
+Output:
+{"notes":"The video argues that daydreaming about success replaces the work. Pictures sit on the hook and on the numbers; the call to action stays plain video.","pictures":[{"ids":["b001"]},{"ids":["b003"]}]}
+</example>
+
+<final_check>
+Silently check: only given ids; no id twice; groups are directly adjacent; no style words in descriptions; the whole video is covered with no long gap; your reply starts with { and ends with }.
+</final_check>

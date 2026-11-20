@@ -1,0 +1,477 @@
+/* The Silent Shears · RETRO theme ("old computer").
+   Cream windows, ink-blue screen, pixel fonts, hard shadows, dither patterns.
+   Only active when <html data-theme="retro">. Switch it in Settings on the start page. */
+
+/* ---- the monitor wrapper exists in the page always; it is invisible unless the retro theme is on ---- */
+.crt, .crt-screen { display: contents; }
+.crt-foot { display: none; }
+
+html[data-theme="retro"] {
+  color-scheme: light;
+
+  --cream: #ece5ca;
+  --cream-2: #f7f2de;
+  --cream-3: #d9d1b0;
+  --ink: #23262e;
+  --ink-2: #3a3f4a;
+  --ink-3: #5b5f66;
+  --hard: #0e1014;                 /* hard shadow of windows that sit on the desktop */
+
+  --desk: #23262e;
+  --desk-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='2' height='2' fill='%232d313b' fill-opacity='1'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%232d313b' fill-opacity='1'/%3E%3C/svg%3E");
+  --on-desk: #ece5ca;
+
+  --dither: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='2' height='2' fill='%2323262e' fill-opacity='1'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%2323262e' fill-opacity='1'/%3E%3C/svg%3E");
+  --dither-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='1' height='1' fill='%2323262e' fill-opacity='1'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2323262e' fill-opacity='1'/%3E%3C/svg%3E");
+  --dither-cream: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='1' height='1' fill='%23f7f2de' fill-opacity='1'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23f7f2de' fill-opacity='1'/%3E%3C/svg%3E");
+  --dither-faint: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='2' height='2' fill='%2323262e' fill-opacity='0.2'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%2323262e' fill-opacity='0.2'/%3E%3C/svg%3E");
+  --hatch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='1' height='1' fill='%2323262e' fill-opacity='1'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2323262e' fill-opacity='1'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2323262e' fill-opacity='1'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2323262e' fill-opacity='1'/%3E%3C/svg%3E");
+
+  /* remap the names the other stylesheets use */
+  --bg: var(--cream-2);
+  --bg-2: var(--cream-2);
+  --panel: var(--cream);
+  --raised: var(--cream-2);
+  --raised-2: var(--cream-3);
+  --stage: #1b1e25;
+  --paper: var(--cream);
+  --raised-solid: var(--cream-2);
+
+  --line: var(--ink);
+  --line-2: #aaa387;
+
+  --lilac: var(--ink);
+  --lilac-2: var(--ink);
+  --pink: var(--ink);
+  --sky: var(--ink);
+  --butter: var(--ink);
+  --mint: var(--ink);
+  --red: var(--ink);
+  --blue: var(--ink);
+  --green: var(--ink);
+  --marker: var(--ink);
+  --red-fill: rgba(35, 38, 46, .12);
+  --blue-fill: rgba(35, 38, 46, .12);
+  --on-accent: var(--cream-2);
+  --grad: var(--ink);
+  --grad-soft: var(--cream-3);
+
+  --r-sm: 0; --r-md: 0; --r-lg: 0;
+  --shadow: 6px 6px 0 var(--hard);
+
+  --font-ui: "Pixelify Sans", "VT323", "Courier New", ui-monospace, monospace;
+  --font-display: "Silkscreen", "Pixelify Sans", "Courier New", ui-monospace, monospace;
+  --font-pix: "Pixelify Sans", "VT323", "Courier New", ui-monospace, monospace;
+}
+/* desktop colours (picked in Settings): ink = image 1, mint = image 2, moss = image 3 */
+html[data-theme="retro"][data-desk="mint"] { --desk: #78cc67; --desk-tile: none; --on-desk: #1d2a1a; --hard: #23262e; }
+html[data-theme="retro"][data-desk="moss"] { --desk: #3f4c41; --desk-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='2' height='2' fill='%2346544a' fill-opacity='1'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%2346544a' fill-opacity='1'/%3E%3C/svg%3E"); --on-desk: #e8e4cf; --hard: #151b16; }
+
+/* ---------------------------------------------------------------- base */
+html[data-theme="retro"] *,
+html[data-theme="retro"] *::before,
+html[data-theme="retro"] *::after { border-radius: 0 !important; transition-duration: 0s !important; }
+
+html[data-theme="retro"] body {
+  padding: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='2' height='2' fill='%232d313b' fill-opacity='1'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%232d313b' fill-opacity='1'/%3E%3C/svg%3E") 0 0 / 4px 4px, #1b1e25;
+  background-attachment: scroll;
+  color: var(--ink);
+  font: 17px/1.3 var(--font-ui);
+  letter-spacing: .01em;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='16' viewBox='0 0 12 16' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%2323262e'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%2323262e'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%2323262e'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%2323262e'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%2323262e'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%2323262e'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='1' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='13' width='1' height='1' fill='%2323262e'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='13' width='1' height='1' fill='%2323262e'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='15' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%2323262e'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%23f7f2de'/%3E%3C/svg%3E") 0 0, default;
+}
+html[data-theme="retro"] button, html[data-theme="retro"] a, html[data-theme="retro"] summary,
+html[data-theme="retro"] label, html[data-theme="retro"] .w, html[data-theme="retro"] .chip,
+html[data-theme="retro"] .switch, html[data-theme="retro"] .project, html[data-theme="retro"] .drop { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='16' viewBox='0 0 12 16' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%2323262e'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%2323262e'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%2323262e'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%2323262e'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%2323262e'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%2323262e'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='1' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%2323262e'/%3E%3Crect x='0' y='13' width='1' height='1' fill='%2323262e'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='13' width='1' height='1' fill='%2323262e'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%2323262e'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%2323262e'/%3E%3Crect x='6' y='15' width='1' height='1' fill='%2323262e'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%2323262e'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%23f7f2de'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%23f7f2de'/%3E%3C/svg%3E") 0 0, pointer; }
+html[data-theme="retro"] input[type="text"], html[data-theme="retro"] input[type="number"],
+html[data-theme="retro"] input:not([type]), html[data-theme="retro"] textarea { cursor: text; }
+
+html[data-theme="retro"] ::selection { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] :focus-visible { outline: 3px dashed var(--ink); outline-offset: 2px; }
+html[data-theme="retro"] .muted, html[data-theme="retro"] .hint { font-size: 15px; color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- the monitor */
+html[data-theme="retro"] .crt {
+  display: flex; flex-direction: column; height: 100%;
+  padding: 16px 16px 0; background: var(--cream);
+  clip-path: polygon(0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px));
+}
+html[data-theme="retro"] .crt-screen {
+  display: flex; flex-direction: column; flex: 1; min-height: 0;
+  border: 3px solid var(--ink); padding: 12px;
+  background: var(--dither-fine) 0 0 / 2px 2px, var(--cream);
+}
+html[data-theme="retro"] #app {
+  flex: 1; height: auto; min-height: 0; position: relative; overflow: hidden;
+  border: 3px solid var(--ink); background: var(--desk-tile) 0 0 / 4px 4px, var(--desk);
+}
+/* faint scanlines over the screen */
+html[data-theme="retro"] #app::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 30;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .05) 0 1px, transparent 1px 3px);
+}
+html[data-theme="retro"] .crt-foot { display: flex; align-items: center; justify-content: space-between; flex: none; height: 44px; padding: 0 6px; }
+html[data-theme="retro"] .crt-foot .vents { width: 48px; height: 15px; background: repeating-linear-gradient(0deg, var(--ink) 0 3px, transparent 3px 6px); }
+html[data-theme="retro"] .crt-foot .pwr { width: 20px; height: 20px; border: 3px solid var(--ink); position: relative; }
+html[data-theme="retro"] .crt-foot .pwr::after { content: ""; position: absolute; inset: 3px; background: var(--ink); }
+
+/* ---------------------------------------------------------------- scrollbars */
+html[data-theme="retro"] * { scrollbar-width: auto; scrollbar-color: var(--ink) var(--cream-3); }
+html[data-theme="retro"] ::-webkit-scrollbar { width: 16px; height: 16px; }
+html[data-theme="retro"] ::-webkit-scrollbar-track { background: var(--dither-fine) 0 0 / 2px 2px, var(--cream-2); border-left: 3px solid var(--ink); }
+html[data-theme="retro"] ::-webkit-scrollbar-thumb,
+html[data-theme="retro"] ::-webkit-scrollbar-thumb:hover { background: var(--ink); border: 3px solid var(--cream-2); background-clip: border-box; }
+html[data-theme="retro"] ::-webkit-scrollbar-corner { background: var(--cream-2); }
+
+/* ---------------------------------------------------------------- icons (blocky) */
+html[data-theme="retro"] svg { shape-rendering: crispEdges; }
+html[data-theme="retro"] svg * { stroke-linecap: square; stroke-linejoin: miter; }
+
+/* ---------------------------------------------------------------- top bar (menu bar) */
+html[data-theme="retro"] .topbar {
+  height: 50px; background: var(--cream); backdrop-filter: none;
+  border-bottom: 3px solid var(--ink);
+}
+html[data-theme="retro"] .topbar::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 8px; pointer-events: none;
+  background: var(--dither) 0 0 / 4px 4px; opacity: .55;
+}
+html[data-theme="retro"] .brand { font: 700 15px var(--font-display); text-transform: uppercase; letter-spacing: .06em; color: var(--ink); }
+html[data-theme="retro"] .brand-mark { width: 28px; height: 28px; filter: none; background: var(--ink); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' shape-rendering='crispEdges' %3E%3Crect x='2' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='11' width='1' height='1' fill='%23000'/%3E%3Crect x='11' y='11' width='1' height='1' fill='%23000'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' shape-rendering='crispEdges' %3E%3Crect x='2' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='2' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='3' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23000'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23000'/%3E%3Crect x='10' y='11' width='1' height='1' fill='%23000'/%3E%3Crect x='11' y='11' width='1' height='1' fill='%23000'/%3E%3C/svg%3E") center / contain no-repeat; image-rendering: pixelated; }
+html[data-theme="retro"] .brand-mark svg { display: none; }
+html[data-theme="retro"] .title-input { border: 3px solid transparent; font: 600 17px var(--font-ui); }
+html[data-theme="retro"] .title-input:hover { background: rgba(35, 38, 46, .08); }
+html[data-theme="retro"] .title-input:focus { border-color: var(--ink); background: var(--cream-2); }
+html[data-theme="retro"] .save-state { background: var(--cream-2); border: 2px solid var(--ink); font: 700 11px var(--font-display); text-transform: uppercase; color: var(--ink); }
+html[data-theme="retro"] .save-state::before { border-radius: 0; box-shadow: none; background: var(--ink); width: 8px; height: 8px; }
+html[data-theme="retro"] .save-state.err { color: var(--ink); text-decoration: underline wavy; }
+
+/* ---------------------------------------------------------------- buttons */
+html[data-theme="retro"] .btn {
+  height: 40px; padding: 0 15px; border: 3px solid var(--ink); background: var(--cream-2); color: var(--ink);
+  font: 600 16px var(--font-ui); box-shadow: 3px 3px 0 var(--ink);
+}
+html[data-theme="retro"] .btn:hover:not(:disabled) { background: var(--ink); color: var(--cream-2); border-color: var(--ink); }
+html[data-theme="retro"] .btn:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+html[data-theme="retro"] .btn:disabled { opacity: 1; color: var(--ink-3); border-style: dashed; background: var(--cream-3); box-shadow: none; }
+html[data-theme="retro"] .btn.primary { background: var(--ink); color: var(--cream-2); box-shadow: 3px 3px 0 rgba(35, 38, 46, .45); }
+html[data-theme="retro"] .btn.primary:hover:not(:disabled) { background: var(--cream-2); color: var(--ink); filter: none; box-shadow: 3px 3px 0 var(--ink); }
+html[data-theme="retro"] .btn.quiet { background: transparent; border-color: transparent; box-shadow: none; }
+html[data-theme="retro"] .btn.quiet:hover:not(:disabled) { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .btn.quiet:active:not(:disabled) { transform: none; }
+html[data-theme="retro"] .btn.danger { color: var(--ink); text-decoration: underline wavy; text-underline-offset: 3px; }
+html[data-theme="retro"] .btn.small { height: 32px; padding: 0 11px; font-size: 15px; box-shadow: 2px 2px 0 var(--ink); }
+html[data-theme="retro"] .btn.small:active:not(:disabled) { transform: translate(2px, 2px); }
+html[data-theme="retro"] .btn.big { height: 52px; font-size: 20px; letter-spacing: .03em; box-shadow: 4px 4px 0 var(--ink); }
+html[data-theme="retro"] .btn.square { padding: 0; }
+html[data-theme="retro"] .btn.tog[aria-pressed="true"],
+html[data-theme="retro"] .bseg .btn[aria-pressed="true"] { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .chip { border: 3px solid var(--ink); background: var(--cream-2); font: 600 15px var(--font-ui); height: 32px; box-shadow: 2px 2px 0 var(--ink); }
+html[data-theme="retro"] .chip:hover { background: var(--cream-3); }
+html[data-theme="retro"] .chip[aria-pressed="true"] { background: var(--ink); color: var(--cream-2); }
+
+/* ---------------------------------------------------------------- fields */
+html[data-theme="retro"] .field, html[data-theme="retro"] .btext, html[data-theme="retro"] .bblock textarea,
+html[data-theme="retro"] .bblock input, html[data-theme="retro"] .broll textarea, html[data-theme="retro"] .broll select,
+html[data-theme="retro"] .bfield select, html[data-theme="retro"] .transport select {
+  border: 3px solid var(--ink); background: var(--cream-2); color: var(--ink);
+  box-shadow: inset 3px 3px 0 rgba(35, 38, 46, .16); font-family: var(--font-ui); font-size: 16px;
+}
+html[data-theme="retro"] .field:hover { border-color: var(--ink); }
+html[data-theme="retro"] .field:focus, html[data-theme="retro"] .btext:focus,
+html[data-theme="retro"] .broll textarea:focus, html[data-theme="retro"] .bblock input:focus {
+  outline: 3px dashed var(--ink); outline-offset: 2px; border-color: var(--ink); box-shadow: inset 3px 3px 0 rgba(35, 38, 46, .16);
+}
+html[data-theme="retro"] select option { background: var(--cream-2); color: var(--ink); }
+html[data-theme="retro"] label.stack { font: 700 14px var(--font-display); text-transform: uppercase; color: var(--ink-2); }
+html[data-theme="retro"] .range, html[data-theme="retro"] input[type="range"] { accent-color: var(--ink); }
+html[data-theme="retro"] .swatch { border: 3px solid var(--ink); background: var(--cream-2); }
+
+html[data-theme="retro"] .switch { width: 46px; height: 26px; background: var(--cream-2); border: 3px solid var(--ink); }
+html[data-theme="retro"] .switch::after { top: 2px; left: 2px; width: 14px; height: 14px; background: var(--ink); box-shadow: none; }
+html[data-theme="retro"] .switch:checked { background: var(--ink); }
+html[data-theme="retro"] .switch:checked::after { transform: translateX(20px); background: var(--cream-2); }
+html[data-theme="retro"] .switch-row { font-size: 16px; color: var(--ink); }
+
+/* ---------------------------------------------------------------- windows */
+html[data-theme="retro"] .card, html[data-theme="retro"] .steps, html[data-theme="retro"] .sheet,
+html[data-theme="retro"] .tl-card, html[data-theme="retro"] .summary, html[data-theme="retro"] dialog {
+  background: var(--cream); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--hard); color: var(--ink);
+}
+html[data-theme="retro"] .card { padding: 24px; }
+
+/* title bar: ink block with the title, dither band, close box */
+html[data-theme="retro"] .card-head, html[data-theme="retro"] .dlg h2 {
+  display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 8px 0 12px;
+  background: var(--ink); color: var(--cream-2);
+  font: 700 14px var(--font-display); text-transform: uppercase; letter-spacing: .08em;
+}
+html[data-theme="retro"] .card-head { margin: -24px -24px 6px; }
+html[data-theme="retro"] .card-head h2 { font: inherit; color: inherit; margin: 0; }
+html[data-theme="retro"] .card-head::before, html[data-theme="retro"] .dlg h2::after {
+  content: ""; order: 2; flex: 1; align-self: stretch; margin: 7px 0;
+  background: var(--dither-cream) 0 0 / 2px 2px, var(--ink);
+}
+html[data-theme="retro"] .card-head .count { order: 3; color: var(--cream-2); font: 700 12px var(--font-display); }
+html[data-theme="retro"] .card-head::after, html[data-theme="retro"] .dlg h2::before {
+  content: "x"; order: 4; display: grid; place-items: center; width: 22px; height: 22px; flex: none;
+  border: 2px solid var(--cream-2); color: var(--cream-2); font: 700 13px/1 var(--font-display); text-transform: lowercase;
+}
+html[data-theme="retro"] .dlg { padding: 26px 28px; }
+html[data-theme="retro"] .dlg h2 { margin: -26px -28px 4px; }
+html[data-theme="retro"] .dlg h2 .icon { color: var(--cream-2); }
+html[data-theme="retro"] dialog { box-shadow: 8px 8px 0 var(--hard); overflow: hidden; }
+html[data-theme="retro"] dialog::backdrop { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2' shape-rendering='crispEdges' %3E%3Crect x='0' y='0' width='1' height='1' fill='%230b0c10' fill-opacity='0.6'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%230b0c10' fill-opacity='0.6'/%3E%3C/svg%3E") 0 0 / 2px 2px; backdrop-filter: none; }
+
+/* ---------------------------------------------------------------- home */
+html[data-theme="retro"] .hero {
+  position: relative; max-width: 780px; padding: 26px 30px; background: var(--ink); color: var(--cream-2);
+  box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 5px var(--cream-2);
+  clip-path: polygon(0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px));
+}
+html[data-theme="retro"] .hero h1 { font: 700 clamp(26px, 4vw, 42px)/1.2 var(--font-pix); letter-spacing: .02em; color: var(--cream-2); }
+html[data-theme="retro"] .hero h1 span { background: var(--cream-2); color: var(--ink); -webkit-background-clip: border-box; background-clip: border-box; padding: 0 10px; }
+html[data-theme="retro"] .hero .lede { color: var(--cream-2); font-size: 20px; opacity: .92; }
+html[data-theme="retro"] .hero .lede::after { content: "_"; margin-left: 4px; animation: retro-blink 1s steps(1) infinite; }
+@keyframes retro-blink { 50% { opacity: 0; } }
+
+html[data-theme="retro"] .how li { background: var(--cream); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--hard); }
+html[data-theme="retro"] .how .ico { background: var(--ink) !important; color: var(--cream-2) !important; border: 0; }
+html[data-theme="retro"] .how b { font: 700 13px var(--font-display); text-transform: uppercase; letter-spacing: .04em; }
+html[data-theme="retro"] .how span.t { font-size: 15px; color: var(--ink-3); }
+
+html[data-theme="retro"] .drop {
+  border: 3px dashed var(--ink); background: var(--dither-faint) 0 0 / 4px 4px, var(--cream-2); color: var(--ink-2); min-height: 200px;
+}
+html[data-theme="retro"] .drop:hover, html[data-theme="retro"] .drop.over { background: var(--dither-faint) 0 0 / 4px 4px, var(--cream-3); border-style: solid; transform: none; }
+html[data-theme="retro"] .drop strong { font: 700 22px var(--font-pix); color: var(--ink); }
+html[data-theme="retro"] .drop .drop-ico { background: var(--ink); color: var(--cream-2); border: 0; }
+html[data-theme="retro"] .drop .file-chip { background: var(--cream); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); color: var(--ink); }
+
+html[data-theme="retro"] .options { border: 3px solid var(--ink); background: var(--cream-2); }
+html[data-theme="retro"] .options > summary { font: 700 14px var(--font-display); text-transform: uppercase; letter-spacing: .05em; padding: 12px 14px; }
+html[data-theme="retro"] .options > summary:hover { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .options > summary:hover .icon, html[data-theme="retro"] .options > summary:hover small { color: var(--cream-2); }
+html[data-theme="retro"] .options > summary small { font: 15px var(--font-ui); text-transform: none; letter-spacing: 0; color: var(--ink-3); }
+html[data-theme="retro"] .options[open] > summary { border-bottom: 3px solid var(--ink); background: var(--cream-3); }
+html[data-theme="retro"] .options[open] > summary:hover { background: var(--ink); }
+
+html[data-theme="retro"] .ai-pick .seg { border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+html[data-theme="retro"] .ai-pick .seg-btn { font: 600 16px var(--font-ui); padding: 5px 16px; color: var(--ink); }
+html[data-theme="retro"] .ai-pick .seg-btn:hover { background: var(--cream-3); }
+html[data-theme="retro"] .ai-pick .seg-btn.on { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .ai-pick > strong { font: 700 13px var(--font-display); text-transform: uppercase; letter-spacing: .05em; }
+html[data-theme="retro"] .ai-pick .ai-hint { font-size: 15px; opacity: 1; color: var(--ink-3); }
+html[data-theme="retro"] .desk-swatch { width: 30px; height: 30px; border: 3px solid var(--ink); padding: 0; box-shadow: 2px 2px 0 var(--ink); }
+html[data-theme="retro"] .desk-swatch[aria-pressed="true"] { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+html[data-theme="retro"] .banner { background: var(--cream-2); border: 3px dashed var(--ink); color: var(--ink); font-size: 16px; }
+html[data-theme="retro"] .banner code { background: var(--ink); color: var(--cream-2); padding: 0 6px; }
+html[data-theme="retro"] .error-card { background: var(--cream-2); border: 3px solid var(--ink); border-left-width: 12px; color: var(--ink); }
+
+html[data-theme="retro"] .project { border: 3px solid var(--ink); background: var(--cream-2); box-shadow: 3px 3px 0 var(--ink); }
+html[data-theme="retro"] .project:hover { background: var(--cream-3); border-color: var(--ink); transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+html[data-theme="retro"] .project .thumb { background: var(--ink); color: var(--cream-2); border: 0; }
+html[data-theme="retro"] .project:hover .project-open { background: var(--ink); color: var(--cream-2); border-color: var(--ink); }
+html[data-theme="retro"] .project .name { font-size: 18px; }
+html[data-theme="retro"] .project .sub { font-size: 15px; color: var(--ink-3); }
+html[data-theme="retro"] .empty { border: 3px dashed var(--ink); color: var(--ink-3); }
+html[data-theme="retro"] .empty .icon { color: var(--ink); opacity: 1; }
+html[data-theme="retro"] .empty b { color: var(--ink); font: 700 14px var(--font-display); text-transform: uppercase; }
+
+html[data-theme="retro"] .badge { height: 24px; padding: 0 9px; border: 2px solid var(--ink); background: var(--cream-2); color: var(--ink); font: 700 11px var(--font-display); text-transform: uppercase; letter-spacing: .04em; }
+html[data-theme="retro"] .badge.ok { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .badge.run { background: var(--cream-3); border-style: dashed; }
+html[data-theme="retro"] .badge.err { background: var(--ink); color: var(--cream-2); border-style: dashed; }
+html[data-theme="retro"] .badge.err::before { content: "! "; white-space: pre; }
+html[data-theme="retro"] .badge.ai { background: var(--hatch) 0 0 / 4px 4px, var(--cream-2); }
+html[data-theme="retro"] .badge.you { background: var(--dither-faint) 0 0 / 4px 4px, var(--cream-2); }
+html[data-theme="retro"] .badge.mixed { background: var(--cream-3); }
+
+html[data-theme="retro"] .progress, html[data-theme="retro"] .bar-fill, html[data-theme="retro"] .bbar {
+  height: 20px; padding: 2px; border: 3px solid var(--ink); background: var(--cream-2); overflow: hidden;
+}
+html[data-theme="retro"] .progress > i, html[data-theme="retro"] .bbar div {
+  background: repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 11px); transition: none;
+}
+
+/* ---------------------------------------------------------------- processing */
+html[data-theme="retro"] .process h1 { font: 700 34px/1.15 var(--font-pix); color: var(--on-desk); }
+html[data-theme="retro"] .process > .muted { color: var(--on-desk); opacity: .85; font-size: 18px; }
+html[data-theme="retro"] .steps { padding: 22px 22px 10px; }
+html[data-theme="retro"] .steps::before {
+  content: "PROCESSING"; display: block; margin: -22px -22px 20px; padding: 0 12px; height: 34px; line-height: 34px;
+  background: var(--ink); color: var(--cream-2); font: 700 14px/34px var(--font-display); letter-spacing: .08em;
+}
+html[data-theme="retro"] .step::before { background: none !important; width: 0; border-left: 3px dotted var(--ink); }
+html[data-theme="retro"] .step .mark { border: 3px solid var(--ink); background: var(--cream-2); color: var(--ink); }
+html[data-theme="retro"] .step.done .mark { background: var(--ink); border-color: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .step.running .mark { background: var(--cream-2); border-style: dashed; box-shadow: 4px 4px 0 var(--ink); }
+html[data-theme="retro"] .step.error .mark { background: var(--ink); color: var(--cream-2); border-style: dashed; }
+html[data-theme="retro"] .step .label { font: 700 14px var(--font-display); text-transform: uppercase; letter-spacing: .04em; padding-top: 8px; }
+html[data-theme="retro"] .step .detail { font-size: 16px; color: var(--ink-2); }
+html[data-theme="retro"] .spin { border: 3px solid var(--ink); border-top-color: transparent; width: 16px; height: 16px; animation: retro-spin 1s steps(4) infinite; }
+@keyframes retro-spin { to { transform: rotate(360deg); } }
+
+/* ---------------------------------------------------------------- review */
+html[data-theme="retro"] .review { gap: 18px; padding: 18px; }
+html[data-theme="retro"] .player { border: 3px solid var(--ink); background: var(--stage); box-shadow: 6px 6px 0 var(--hard); }
+/* the monitor frame leaves less height, so the left column scrolls instead of squeezing the 16:9 player into the controls */
+html[data-theme="retro"] .stage { grid-template-columns: minmax(0, 1fr); grid-auto-rows: max-content; }
+html[data-theme="retro"] .player .flash { background: var(--cream-2); color: var(--ink); border: 2px solid var(--ink); font: 700 12px var(--font-display); text-transform: uppercase; }
+html[data-theme="retro"] .overlay { background: rgba(236, 229, 202, .92); color: var(--ink); }
+
+html[data-theme="retro"] .tl-card { padding: 0 16px 16px; }
+html[data-theme="retro"] .tl-title {
+  margin: 0 -16px; padding: 0 12px; height: 32px; background: var(--ink); color: var(--cream-2);
+  font: 700 13px var(--font-display); text-transform: uppercase; letter-spacing: .06em;
+}
+html[data-theme="retro"] .tl-title span { color: var(--cream-2); font: 15px var(--font-ui); text-transform: none; letter-spacing: 0; }
+html[data-theme="retro"] .tl-card > .tl-title + * { margin-top: 10px; }
+html[data-theme="retro"] .tl-tick { font: 12px var(--font-ui); color: var(--ink-2); }
+html[data-theme="retro"] .tl-lane { background: var(--cream-2); border: 3px solid var(--ink); box-shadow: none; }
+html[data-theme="retro"] .tl-bars i { background: var(--ink); opacity: 1; }
+html[data-theme="retro"] .tl-bars i.cut, html[data-theme="retro"] .tl-bars i.cut.ai, html[data-theme="retro"] .tl-bars i.cut.you { background: var(--ink-3); opacity: .35; }
+html[data-theme="retro"] .tl-cut { border-color: var(--ink); border-width: 0 3px; }
+html[data-theme="retro"] .tl-cut.ai { background: var(--hatch) 0 0 / 4px 4px, var(--cream-2); }
+html[data-theme="retro"] .tl-cut.you { background: var(--dither) 0 0 / 4px 4px, var(--cream-2); }
+html[data-theme="retro"] .tl-cut.mixed { background: var(--hatch) 0 0 / 4px 4px, var(--cream-3); border-style: dashed; }
+html[data-theme="retro"] .tl-sel { background: rgba(35, 38, 46, .14); border: 3px dashed var(--ink); }
+html[data-theme="retro"] .tl-head { background: var(--ink); width: 3px; margin-left: -1px; box-shadow: none; }
+html[data-theme="retro"] .tl-head::before { background: var(--ink); border: 3px solid var(--cream-2); left: -8px; top: -10px; width: 16px; height: 16px; }
+html[data-theme="retro"] .tl-hover { border-left: 2px dashed var(--ink); }
+html[data-theme="retro"] .tl-hover b { background: var(--cream-2); border: 2px solid var(--ink); color: var(--ink); font: 13px var(--font-ui); }
+
+html[data-theme="retro"] .legend { font-size: 15px; color: var(--ink-2); }
+html[data-theme="retro"] .legend i { border: 2px solid var(--ink); }
+html[data-theme="retro"] .legend .ai i { background: var(--hatch) 0 0 / 4px 4px, var(--cream-2); }
+html[data-theme="retro"] .legend .you i { background: var(--dither) 0 0 / 4px 4px, var(--cream-2); }
+html[data-theme="retro"] .legend .sel i { background: var(--ink); }
+
+html[data-theme="retro"] .transport .time { font: 700 20px var(--font-pix); color: var(--on-desk); }
+html[data-theme="retro"] .transport .time span { color: var(--on-desk); opacity: .7; }
+html[data-theme="retro"] .transport select { height: 36px; font-weight: 600; }
+/* controls that sit directly on the desktop */
+html[data-theme="retro"] .transport .btn, html[data-theme="retro"] .transport .btn.quiet,
+html[data-theme="retro"] .process .btn.quiet { background: var(--cream-2); color: var(--ink); border-color: var(--ink); box-shadow: 3px 3px 0 var(--hard); }
+html[data-theme="retro"] .transport .btn:hover:not(:disabled), html[data-theme="retro"] .transport .btn.quiet:hover:not(:disabled),
+html[data-theme="retro"] .process .btn.quiet:hover:not(:disabled) { background: var(--cream-3); color: var(--ink); }
+html[data-theme="retro"] .transport .btn:active:not(:disabled), html[data-theme="retro"] .transport .btn.quiet:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: none; }
+html[data-theme="retro"] .transport .switch-row { color: var(--on-desk); }
+html[data-theme="retro"] .transport .switch { border-color: var(--cream-2); }
+
+html[data-theme="retro"] .summary { background: var(--cream-2); box-shadow: 6px 6px 0 var(--hard); }
+html[data-theme="retro"] .summary .big { font: 700 44px/1 var(--font-pix); }
+html[data-theme="retro"] .summary .big small { font: 700 12px var(--font-display); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); }
+html[data-theme="retro"] .summary .facts span { background: var(--cream); border: 2px solid var(--ink); font: 15px var(--font-ui); }
+html[data-theme="retro"] .summary .caption { color: var(--ink-2); opacity: 1; font-size: 15px; }
+
+html[data-theme="retro"] .tabs { background: var(--ink); padding: 10px 12px 0; gap: 6px; border-bottom: 3px solid var(--ink); }
+html[data-theme="retro"] .tab {
+  height: 32px; padding: 0 14px; border: 3px solid var(--ink); border-bottom: 0; background: var(--cream-3); color: var(--ink);
+  font: 700 11px var(--font-display); text-transform: uppercase; letter-spacing: .06em;
+}
+html[data-theme="retro"] .tab:hover { background: var(--cream-2); color: var(--ink); }
+html[data-theme="retro"] .tab[aria-selected="true"] { background: var(--cream); color: var(--ink); height: 35px; margin-bottom: -3px; }
+html[data-theme="retro"] .tab .count, html[data-theme="retro"] .tab[aria-selected="true"] .count { background: var(--ink); color: var(--cream-2); font-size: 11px; }
+
+html[data-theme="retro"] .toolbar { background: var(--cream-3); border-bottom: 3px solid var(--ink); }
+html[data-theme="retro"] .toolbar .sel-info { color: var(--ink-2); font-size: 15px; }
+
+html[data-theme="retro"] .seg { transition: none; }
+html[data-theme="retro"] .seg:hover { background: rgba(35, 38, 46, .07); }
+html[data-theme="retro"] .seg.live { background: var(--cream-3); box-shadow: inset 5px 0 0 var(--ink); }
+html[data-theme="retro"] .seg-time { font: 13px var(--font-ui); color: var(--ink-3); }
+html[data-theme="retro"] .seg-time:hover { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .seg-text { font: 500 19px/1.9 var(--font-ui); }
+
+html[data-theme="retro"] .w:hover { background-color: rgba(35, 38, 46, .14); }
+html[data-theme="retro"] .w.cut { color: var(--ink-3); }
+html[data-theme="retro"] .w.cut.ai {
+  background-image: linear-gradient(transparent 47%, var(--ink) 47%, var(--ink) 57%, transparent 57%); background-color: transparent;
+}
+html[data-theme="retro"] .w.cut.you {
+  background-image: linear-gradient(transparent 47%, var(--ink) 47%, var(--ink) 57%, transparent 57%), var(--dither-faint); background-size: auto, 4px 4px; background-color: transparent;
+}
+html[data-theme="retro"] .w.restored { text-decoration-color: var(--ink); }
+html[data-theme="retro"] .w.sel, html[data-theme="retro"] .w.sel.cut { background-color: var(--ink); background-image: none; color: var(--cream-2); }
+html[data-theme="retro"] .w.now { box-shadow: inset 0 -4px 0 var(--ink); }
+
+html[data-theme="retro"] .cut-card { border: 3px solid var(--ink); border-left-width: 10px; background: var(--cream-2); box-shadow: 3px 3px 0 var(--ink); }
+html[data-theme="retro"] .cut-card:hover { background: var(--cream-3); }
+html[data-theme="retro"] .cut-card .text { font: 18px/1.5 var(--font-ui); text-decoration-color: var(--ink); }
+
+html[data-theme="retro"] .notes h3, html[data-theme="retro"] .cap-sec h3, html[data-theme="retro"] .bhead h3 { font: 700 14px var(--font-display); text-transform: uppercase; letter-spacing: .05em; }
+html[data-theme="retro"] .notes .warn { color: var(--ink); text-decoration: underline wavy; }
+
+html[data-theme="retro"] kbd {
+  border: 2px solid var(--ink); border-bottom-width: 4px; background: var(--cream-2); color: var(--ink);
+  font: 700 12px var(--font-display); padding: 2px 7px;
+}
+html[data-theme="retro"] .keys { font-size: 16px; }
+html[data-theme="retro"] .keys dd { color: var(--ink-2); }
+
+html[data-theme="retro"] .menu-body { background: var(--cream); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--hard); }
+html[data-theme="retro"] .more-menu[open] > summary { background: var(--ink); color: var(--cream-2); }
+
+html[data-theme="retro"] .toast { background: var(--cream-2); border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--hard); color: var(--ink); font: 600 16px var(--font-ui); }
+html[data-theme="retro"] .toast.error { background: var(--ink); color: var(--cream-2); border-style: dashed; border-color: var(--cream-2); }
+
+/* export dialog */
+html[data-theme="retro"] .export-sum li { background: var(--cream-2); border: 2px solid var(--ink); }
+html[data-theme="retro"] .export-sum li.on b::before, html[data-theme="retro"] .export-sum li.off b::before { border-radius: 0; background: var(--ink); }
+html[data-theme="retro"] .export-sum li.off b::before { background: transparent; border: 2px solid var(--ink); width: 9px; height: 9px; }
+html[data-theme="retro"] .export-more > summary { font: 700 12px var(--font-display); text-transform: uppercase; color: var(--ink-2); }
+
+/* ---------------------------------------------------------------- captions tab */
+html[data-theme="retro"] .cap-head { background: var(--cream-3); border: 3px solid var(--ink); }
+html[data-theme="retro"] .cap-sec { border-top: 3px dashed var(--ink); }
+html[data-theme="retro"] .cap-row { font-size: 15px; color: var(--ink-2); }
+html[data-theme="retro"] .cap-preset { border: 3px solid var(--ink); background: var(--cream-2); box-shadow: 3px 3px 0 var(--ink); }
+html[data-theme="retro"] .cap-preset:hover { border-color: var(--ink); transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+html[data-theme="retro"] .cap-add, html[data-theme="retro"] .cap-results { border: 3px solid var(--ink); background: var(--cream-2); }
+html[data-theme="retro"] .cap-drop { border: 3px dashed var(--ink); }
+html[data-theme="retro"] .cap-drop:hover, html[data-theme="retro"] .cap-drop.over { background: var(--cream-3); border-color: var(--ink); }
+html[data-theme="retro"] .enh-step > b { background: var(--ink); color: var(--cream-2); }
+
+/* ---------------------------------------------------------------- B-roll tab */
+html[data-theme="retro"] .bsub-btn { border: 3px solid var(--ink); background: var(--cream-2); color: var(--ink); font: 700 12px var(--font-display); text-transform: uppercase; }
+html[data-theme="retro"] .bsub-btn:hover { background: var(--cream-3); color: var(--ink); }
+html[data-theme="retro"] .bsub-btn[aria-selected="true"] { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .bdot.done { background: var(--ink); }
+html[data-theme="retro"] .bdot.running { background: var(--ink); animation: retro-blink .8s steps(1) infinite; }
+html[data-theme="retro"] .bdot.failed { background: transparent; border: 2px solid var(--ink); }
+html[data-theme="retro"] .bcard { background: var(--cream-2); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+html[data-theme="retro"] .bhint, html[data-theme="retro"] .bsmall, html[data-theme="retro"] .bmuted { font-size: 15px; color: var(--ink-2); }
+html[data-theme="retro"] .berr { background: var(--cream-2); border: 3px dashed var(--ink); color: var(--ink); }
+html[data-theme="retro"] .bout, html[data-theme="retro"] .blog pre { background: var(--cream-3); border: 2px solid var(--ink); color: var(--ink); }
+html[data-theme="retro"] .bchip, html[data-theme="retro"] .bpill { border: 2px solid var(--ink); background: var(--cream-2); color: var(--ink); font: 700 11px var(--font-display); text-transform: uppercase; }
+html[data-theme="retro"] .bchip.done, html[data-theme="retro"] .bpill.ok { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .bchip.failed, html[data-theme="retro"] .bchip.partial, html[data-theme="retro"] .bpill.bad { border-style: dashed; background: var(--cream-3); }
+html[data-theme="retro"] .bchip.running, html[data-theme="retro"] .bchip.queued, html[data-theme="retro"] .bpill.warn { background: var(--cream-3); }
+html[data-theme="retro"] .blink { color: var(--ink); text-decoration: underline; }
+html[data-theme="retro"] .bro-group { background: var(--cream-3); border-left: 6px solid var(--ink); }
+html[data-theme="retro"] .bx, html[data-theme="retro"] .bx2 { border: 2px solid var(--ink); background: var(--cream-2); color: var(--ink); }
+html[data-theme="retro"] .bx:hover, html[data-theme="retro"] .bx2:hover { background: var(--ink); color: var(--cream-2); }
+html[data-theme="retro"] .bopt, html[data-theme="retro"] .bmodel { border: 3px solid var(--ink); background: var(--cream-2); color: var(--ink); }
+html[data-theme="retro"] .bopt:hover, html[data-theme="retro"] .bmodel:hover { background: var(--cream-3); }
+html[data-theme="retro"] .bopt[aria-checked="true"], html[data-theme="retro"] .bmodel[aria-checked="true"] { background: var(--ink); color: var(--cream-2); box-shadow: none; border-color: var(--ink); }
+html[data-theme="retro"] .bmodel[aria-checked="true"] .bdotr { border-color: var(--cream-2); background: radial-gradient(var(--cream-2) 45%, transparent 50%); }
+html[data-theme="retro"] .bref { border: 3px solid var(--ink); }
+html[data-theme="retro"] .broll-pic.movable { outline-color: var(--cream-2); }
+
+@media (max-width: 640px) {
+  html[data-theme="retro"] body { padding: 4px; }
+  html[data-theme="retro"] .crt { padding: 8px 8px 0; }
+  html[data-theme="retro"] .crt-screen { padding: 5px; }
+  html[data-theme="retro"] .crt-foot { height: 26px; }
+  html[data-theme="retro"] .crt-foot .vents { height: 9px; width: 30px; }
+  html[data-theme="retro"] .crt-foot .pwr { width: 12px; height: 12px; border-width: 2px; }
+  html[data-theme="retro"] .crt-foot .pwr::after { inset: 2px; }
+  html[data-theme="retro"] .hero { padding: 20px 18px; }
+}

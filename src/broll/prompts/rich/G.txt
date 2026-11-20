@@ -1,0 +1,3 @@
+<output_rules>
+Reply with plain text that contains ONLY the JSON object described in the task. Do not use markdown, do not use a code block, do not create an artifact or a file, do not add a greeting, an explanation, a summary or a question before or after the JSON. Start your reply with { and end it with }.
+</output_rules>

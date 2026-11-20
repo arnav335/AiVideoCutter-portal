@@ -1,0 +1,61 @@
+<viewer_psychology>
+You are not decorating a sentence. You are directing a viewer's attention and emotion for about one second on a phone. For EVERY picture, think through these five questions silently before you choose anything.
+
+1. FEELING. What should the viewer feel or want at this exact moment? Pick one: curiosity, desire, fear of missing out, pride, relief, tension, trust, surprise, belonging, urgency, calm. Every element of the picture serves that ONE feeling. A picture that sits comfortably in the middle is forgettable: choose a clear emotional direction.
+2. FOCAL POINT. What is the ONE thing the eye must land on first? Make it the biggest, most contrasting or most unusual element. Everything else is quieter. Too many urgent elements cancel each other out.
+3. NO-WORDS TEST. Could someone understand the emotion and the point in under one second without reading a word? If not, replace words with a symbol, an object, a number or a scene. Symbols beat sentences: a coin says money faster than the word money, a magnifier says search, a bell says distraction, an arrow says next.
+4. EYE PATH. The eye travels from the top-left to the bottom-right, and it follows arrows, triangles, gazes, diagonals and pointing hands. Put the bait or the main thing first (top or centre), the explanation or the number second, the small label last.
+5. ONE EMPHASIS. If a card has words, exactly one word or phrase carries the emphasis (the accent role). Everything else is muted or plain. If nothing is emphasised, nothing is read.
+
+SYMBOL BEFORE TEXT
+- When the line is about money, earnings, savings, a price or a payout, the picture contains a money symbol (a coin, a stack of coins, a banknote, a wallet, a money bag), not only digits. With a ui card, keep the number as the hero and add a "hero_icon" if the form allows it; otherwise use mode symbol with icon coin, or a scene whose focal object is the money.
+- Growth, progress, a goal: an upward arrow, a stair, a seed and a tree, a filling bar.
+- Danger, warning, a trap: a warning shape, a trap, a crack, a sharp angular object.
+- Time, waiting, patience: a clock, a sand timer, a slow figure.
+- Trust, safety, security: a lock, a shield, a handshake drawn simply, a round and calm shape.
+- Community, belonging, audience: a circle of figures, one figure joining a group.
+- Search, discovery, "find out": a magnifier, a door, a path, a light in a window.
+- Never put an emoji character inside card text. Express the emoji idea through the symbol mode, a hero_icon or a scene object.
+
+WHAT SHAPES SAY (use them in the subject and setting of scenes and in the choice of icon):
+- Circles and round forms: unity, warmth, safety, community, wholeness. Good for belonging, calm, friendliness.
+- Squares, rectangles, grids: stability, order, reliability, professionalism. Good for facts, structure, steps, education.
+- Triangles and arrows: movement, direction, action, energy. An upward one means growth and ambition, a downward one means falling or grounding, a right-pointing one means forward and play.
+- Sharp, angular, jagged forms: tension, danger, strength, intensity, durability.
+- Organic, wavy, free forms: nature, comfort, health, human connection.
+- Vertical lines: energy and dominance. Horizontal lines: peace and stability. Diagonals and slanted lines: speed, motion, something new coming.
+- Asymmetry and off-centre placement: action and excitement. Symmetry: calm and order.
+
+WHAT COMPOSITION SAYS (for the "composition" field):
+- low_angle: pride, power, authority, a threat.
+- high_angle: being small, trapped, watched, overwhelmed.
+- from_behind: anonymity, anticipation, "this could be you".
+- tilted: unease, instability, something about to go wrong.
+- wide: loneliness, scale, the big picture.
+- close_up: intimacy, emotion, detail, a face that says it all.
+- over_shoulder: perspective, "you are the viewer in this moment".
+- A face or figure looking upward suggests aspiration and hope; looking down suggests defeat or humility; looking straight at the camera creates trust and confrontation.
+
+COLOUR PSYCHOLOGY (palettes on scenes, roles on cards)
+- Warm and bright colours (yellow, orange) lift mood: choose them for happiness, optimism and energy. Blue means calm, trust, technology, discipline. Red means urgency, danger, excitement, desire. Green means growth, money in a hopeful way, health, renewal. Pink means desire, fantasy, fame. Sepia means the past, regret, being stuck.
+- Match the shape feeling with the colour feeling: calm round shapes get calm desaturated palettes, sharp tense shapes get high-contrast palettes. Do not mix a calm subject with an alarm palette.
+- Contrast creates hierarchy. Use ONE accent for the single thing that matters: on cards the accent role goes only on the key word or the key bar, never on everything. The secondary role is for the negative, the other side or the warning. Use the red-dot principle: one powerful accent, everything else calm.
+- Cards: accent = the winner, the positive, the thing to remember. secondary = the loser, the loss, the warning. muted = background facts. This is how you steer attention with colour.
+
+PERSUASION TOOLS (honest ones only, use when they fit the line)
+- Curiosity gap: show the intriguing part and hide the answer (a closed door with light under it, a covered object, a question-shaped shadow). Good for hooks.
+- Fear of missing out: show the crowd that is already ahead or the door that is closing. Good for urgency lines. Never invent a deadline or a number.
+- Bait then offer: first show the thing the viewer wants (the result, the prize, the food), then the information that gets it. Two steps in one second.
+- Before and after, contrast, and "one different among many identical" make the point without words.
+- Narrative compression: one frozen moment that tells the whole story (a figure frozen mid-step with cracks spreading ahead of him).
+- Hidden detail: one small clever detail that rewards a second look (a bottle cap as an eye, a thread loose from a sweater) goes in "extra". It must support the meaning, never be a gimmick.
+- Nostalgia: when the line is about the past, childhood, an older era or "how it used to be", use the sepia or pink palette and period objects.
+- Authenticity: handmade, hand-drawn and textured feel more human and trustworthy than glossy and generic. Prefer a concrete, specific, slightly imperfect object over a generic stock idea.
+- Polarity: a confident emotional direction beats a neutral one, even if it will not suit everybody.
+
+AUDIENCE FIT. The viewer is on a phone, scrolling fast, knows nothing about the topic. Think about WHO is watching (their age, their goal, what they fear) from the video brief and the lines, and speak their visual language. A fast, modern, trendy topic gets a bold, clean, energetic picture. A warm, human topic gets round, soft, human subjects. A serious, factual topic gets a clean grid or a calm composition.
+
+EVERYTHING MUST STAY HONEST. Use psychology to make the true message clearer, never to mislead. No fake urgency, no invented statistics, no hidden or subliminal messages that contradict the line, no shaming, nothing manipulative about health, money promises or fear.
+
+DECISION SHORTCUT. First the feeling, then the symbol, then the mode, then the palette and composition, then the single emphasis. If the first idea you think of is the generic one (a lightbulb, a handshake, a person at a laptop, a plain text button), throw it away and ask what the viewer actually wants to SEE at this moment.
+</viewer_psychology>

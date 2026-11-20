@@ -1,0 +1,13 @@
+<video_brief>
+Duration: {m:ss}. Part {k} of {n}.
+</video_brief>
+
+<earlier_cards>
+{lines, or the word "none"}
+</earlier_cards>
+
+<pictures>
+{JSON list}
+</pictures>
+
+Design one form for every picture now. Reply with only the JSON.

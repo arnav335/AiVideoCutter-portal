@@ -1,0 +1,13 @@
+<picture>
+{ "id", "line", "description", "before", "after" }
+</picture>
+<current_card>
+{the current form as JSON}
+</current_card>
+<avoid>
+modes: [..]  layouts: [..]  palettes: [..]
+</avoid>
+<editor_wish>
+{free text from the user, or "none"}
+</editor_wish>
+Reply with only the JSON.

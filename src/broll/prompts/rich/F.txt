@@ -1,0 +1,100 @@
+<examples>
+"Motivation is a trap."
+{"id":"b001","mode":"scene","palette":"black_yellow","subject":"a lone person in a plain shirt reaching toward a glowing golden trophy that sits on the trigger plate of a huge metal mousetrap","action":"their hand stops an inch above the trophy","setting":"the cracked concrete floor of a narrow dim alley","composition":"high_angle","reason":"the trophy is bait, so the viewer feels the trap"}
+
+"It feels like progress, but it isn't."
+{"id":"b002","mode":"scene","palette":"blue_grey","subject":"a young person in a school-style shirt pedalling a bicycle whose wheels spin on a rolling belt of road","action":"pedalling hard while the scenery stays exactly the same","setting":"an empty street with swirling outlined clouds behind","composition":"medium","reason":"effort without movement is the whole idea"}
+
+"Resistance finds a clever way to distract you."
+{"id":"b003","mode":"scene","palette":"muted_multicolor","subject":"a student sitting at a low desk surrounded by three vivid ghostly figures in pink, yellow and purple leaning in to whisper","action":"the student stares straight ahead with a blank face","setting":"a cramped tatami room with bookshelves","composition":"low_angle","reason":"many tempting voices pull the student away from the work"}
+
+"Instead of doing the work, you're fantasizing about the result." (GOLD STANDARD for creativity: the daydream is drawn as a trophy-shaped cloud above the dreamer)
+{"id":"b004","mode":"scene","palette":"pink","subject":"a person lying on a tatami floor with hands behind the head, above them a huge pink cloud shaped like a trophy","action":"daydreaming with half-closed eyes while white flowers drift down","setting":"a small bright room","composition":"high_angle","reason":"shows daydreaming replacing action"}
+
+"A man that hardens his neck, that walks around stiff-necked and proud, will be destroyed."
+{"id":"b005","mode":"scene","palette":"sepia","subject":"a tall man in a dark suit with his chin raised high and a stiff neck","action":"striding forward without looking down while thin cracks split the street ahead of him","setting":"a dim old street with peeling walls","composition":"low_angle","reason":"pride that does not see the ground breaking"}
+
+"Hannibal pulls back his weak center and envelops the Roman army."
+{"id":"b006","mode":"scene","palette":"green","subject":"a hand pulling a longbow string far back so the bow bends in a deep curve","action":"the arrow is aimed at a distant crowd of tiny dark figures","setting":"an open field under swirling outlined clouds","composition":"wide","reason":"pulling back to strike harder is the lesson of the battle"}
+
+"Perception is what your audience sees you as."
+{"id":"b024","mode":"scene","palette":"blue_grey","subject":"a small ordinary person standing in front of a tall mirror whose reflection is a huge calm glowing figure","action":"the person looks up at the reflection, which does not copy their pose","setting":"a bare room with one window","composition":"low_angle","alt_idea":"a person wearing a different identical mask for each viewer standing in a row","reason":"the mirror shows the version others see"}
+
+"Out of all the people who view your content, only a few become your regular audience."
+{"id":"b025","mode":"scene","palette":"green","subject":"a huge crowd of tiny identical figures walking past a small wooden house","action":"only three of them turn and step through its glowing door","setting":"a long winding path through speckled foliage","composition":"high_angle","alt_idea":"a giant net pulled up from a river holding only three small fish","reason":"most pass by, a few stay"}
+
+"MrBeast's channel crossed three hundred million subscribers."
+{"id":"b007","mode":"logo","brand":"mrbeast","display_name":"MrBeast","kind":"creator","reason":"the line is about his channel, so the logo"}
+
+"MrBeast has millions of views, but views aren't the reason he is famous."
+{"id":"b021","mode":"person","name":"MrBeast","render":"animated","action":"standing calmly with hands in pockets, looking toward the camera","setting":"a bright empty studio with a plain wall","composition":"medium","palette":"blue_grey","reason":"the line is about the person, so an animated portrait"}
+
+"Steve Jobs said the best work comes from loving what you do."
+{"id":"b022","mode":"person","name":"Steve Jobs","render":"real","action":"sitting calmly, facing the camera with a relaxed expression","setting":"a plain bright studio","composition":"close_up","reason":"a believable neutral portrait of a modern public figure"}
+
+"Hannibal pulls back his weak center and envelops the Roman army." (alternative to the bow idea when the person is the point)
+{"id":"b023","mode":"person","name":"Hannibal","render":"animated","look":"an ancient Carthaginian general with a short dark beard and a bronze helmet","action":"standing on a hill seen from behind, watching a distant army","setting":"an open field under swirling outlined clouds","composition":"from_behind","palette":"green","reason":"a historical figure with no photographs, drawn animated"}
+
+"Then you upload it to YouTube."
+{"id":"b008","mode":"logo","brand":"youtube","display_name":"YouTube","kind":"platform","reason":"the platform is named"}
+
+"In its first month, skool made 3,104 dollars and YouTube ads made 2,119."
+{"id":"b009","mode":"ui","layout":"bars","pill":"skool · its first month","rows":[{"label":"skool","value":3104,"role":"accent"},{"label":"youtube ads","value":2119,"role":"secondary"}],"reason":"two real amounts to compare"}
+
+"In October I made five thousand four hundred dollars outside my nine to five."
+{"id":"b010","mode":"ui","layout":"big_number","pill":"october · outside my 9-5","value_text":"$5,400","reason":"one amount is the point"}
+
+"The milestone I'm working toward is side income equal to eighty percent of my paycheck, because eighty percent covers the bills."
+{"id":"b011","mode":"ui","layout":"milestone","pill":"the milestone i'm working toward","headline":"side income = 80% of my paycheck","percent":80,"marker_label":"80% = bills covered","reason":"a goal with a marker"}
+
+"You can either do the work or fantasize about it."
+{"id":"b012","mode":"ui","layout":"toggles","pill":"your brain","rows":[{"label":"doing the work","on":false,"role":"muted"},{"label":"fantasizing about the result","on":true,"role":"secondary"}],"reason":"a choice between two things"}
+
+"The amateur daydreams about the reward. The professional concentrates on the work."
+{"id":"b013","mode":"ui","layout":"columns","pill":"two mindsets","left":{"heading":"amateur","text":"daydreams about the reward","role":"secondary"},"right":{"heading":"professional","text":"focuses on the work","role":"accent"},"reason":"X versus Y"}
+
+"The professional lets the reward come or not come."
+{"id":"b014","mode":"ui","layout":"chips","pill":"the reward","headline":"let it come or not","items":[{"text":"comes","check":true},{"text":"does not come","check":true}],"reason":"both outcomes are fine"}
+
+"The formula has three factors: scale, human value and perception."
+{"id":"b015","mode":"ui","layout":"formula","pill":"the formula","parts":["scale","human value","perception"],"op":"x","reason":"a formula"}
+
+"Is it knowledge, humor, or some emotion like anger, peace, love or safety?"
+{"id":"b016","mode":"ui","layout":"chips","pill":"human value is","items":[{"text":"knowledge"},{"text":"humor"},{"text":"anger"},{"text":"peace"},{"text":"love"},{"text":"safety"}],"reason":"a list of examples"}
+
+"I had two hundred followers and now I have twenty thousand."
+{"id":"b017","mode":"ui","layout":"before_after","pill":"my channel","before":{"label":"before","text":"200 followers"},"after":{"label":"now","text":"20,000 followers"},"reason":"a change with real numbers"}
+
+"Ceramics crumble, whereas metal can deform."
+{"id":"b018","mode":"material","pill":"bend, don't break","halves":[{"heading":"ceramic","object":"a white porcelain plate shattered into sharp pieces","role":"secondary"},{"heading":"metal","object":"a thick brushed steel bar bent into a smooth arc without breaking, with a faint warm glow along the bend","role":"accent"}],"caption":"ceramic shatters · metal deforms","reason":"the texture difference is the message"}
+
+"Michelangelo painted the Sistine Chapel ceiling."
+{"id":"b019","mode":"symbol","pill":"michelangelo","line_art":"two hands reaching toward each other, fingers almost touching","icon_role":"text","name":"sistine chapel ceiling · 1512","reason":"a simple drawing of the famous detail"}
+
+"Look at how he painted every figure on the ceiling."
+{"id":"b020","mode":"real_image","pill":"michelangelo","search_hint":"Sistine Chapel ceiling fresco","reason":"the real painting is the point"}
+
+"I made five thousand four hundred dollars in one month."
+{"id":"b030","mode":"ui","layout":"big_number","pill":"one month","value_text":"$5,400","hero_icon":"coin","psych":"wants proof of money: big number plus coin, accent on the number","reason":"the amount is the hook, the coin says money"}
+
+"I made five thousand four hundred dollars in one month." (version if hero_icon is not built yet)
+{"id":"b030","mode":"symbol","pill":"one month","icon":"coin","icon_role":"accent","name":"$5,400","psych":"coin says money before the number is read","reason":"symbol first, amount under it"}
+
+"Everyone around you is already doing it, and you are still thinking."
+{"id":"b031","mode":"scene","palette":"black_yellow","subject":"a single person standing still at the edge of a platform while a long line of identical figures walk through a glowing door that is slowly closing","action":"the person lifts one hand toward the door but does not step forward","setting":"a dim empty hall with a long tiled floor","composition":"wide","extra":"the door light narrows to a thin slit","psych":"fear of missing out: closing door, one figure left behind","alt_idea":"a train pulling away with a hand-shaped glove left on the platform","reason":"the closing door makes the viewer feel what they are missing"}
+
+"Nobody tells you what happens after you hit a million views."
+{"id":"b032","mode":"scene","palette":"pink","subject":"a tall closed wooden door with golden light leaking under it, and a small person in a hoodie standing in front of it","action":"the person leans in to peek through the keyhole","setting":"a quiet corridor with a patterned floor","composition":"from_behind","psych":"curiosity gap: the answer is hidden behind the door","alt_idea":"a giant covered sculpture with one hand pulling the cloth","reason":"hiding the answer makes the viewer want it"}
+
+"You are so close to quitting, and that is exactly when it changes."
+{"id":"b033","mode":"scene","palette":"sepia","subject":"a tired figure kneeling on a dusty road, in front of them a tiny green sprout cracking through the ground","action":"the figure stares at the sprout with wide eyes","setting":"a long empty road under swirling outlined clouds","composition":"high_angle","extra":"one small flower petal drifts toward the sprout","psych":"relief and hope: low colour, one small green accent as the focal point","alt_idea":"a hand about to let go of a rope while the rope top is almost over a wall","reason":"small hope in a dull scene pulls the eye"}
+
+"Subscribers trust you when you show up every single week."
+{"id":"b034","mode":"scene","palette":"blue_grey","subject":"a small figure putting a glowing round stone on a long row of identical stones leading toward a bright house","action":"the figure kneels and places the stone with care","setting":"a calm riverbank with a low horizon","composition":"medium","psych":"trust: round calm shapes, repetition, horizontal calm lines","alt_idea":"a calendar page drifting by with a single circled day","reason":"a patient repeated action builds trust"}
+
+"There are three kinds of viewers: casual, loyal and superfans."
+{"id":"b035","mode":"ui","layout":"list","pill":"3 kinds of viewers","rows":[{"text":"casual","role":"muted"},{"text":"loyal","role":"muted"},{"text":"superfans","role":"accent"}],"psych":"one emphasis: the best group is the only accent, eye ends on it","reason":"three steps with the valuable one highlighted"}
+
+"Do not buy it today, because the price drops tomorrow."
+{"id":"b036","mode":"ui","layout":"before_after","pill":"the price","before":{"label":"today","text":"full price"},"after":{"label":"tomorrow","text":"lower price"},"psych":"wait for the reward: simple contrast, no invented numbers","reason":"a change with no numbers said, so no digits"}
+</examples>

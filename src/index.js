@@ -3,6 +3,7 @@
 //
 //   npm run cli                     (uses the first file in input/)
 //   npm run cli -- my-video.mp4     (a file from input/)
+//   npm run cli -- --captions       (also burn in captions, default style)
 //
 // For the review portal run `npm start` instead.
 
@@ -10,9 +11,10 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { initStore, createJob, getJob, updateJob, jobFile } from "./server/jobs.js";
+import { initStore, createJob, getJob, updateJob, jobFile, writeJob } from "./server/jobs.js";
 import { runPipeline, exportJob } from "./server/pipeline.js";
 import { SUPPORTED_EXTENSIONS } from "./utils/ffmpeg.js";
+import { sanitizeCaptions } from "./shared/captions.js";
 
 const INPUT_DIR = path.resolve("input");
 const OUTPUT_DIR = path.resolve("output");
@@ -28,7 +30,9 @@ async function pickInput(name) {
 }
 
 async function main() {
-  const fileName = await pickInput(process.argv[2]);
+  const args = process.argv.slice(2);
+  const wantCaptions = args.includes("--captions");
+  const fileName = await pickInput(args.find(a => !a.startsWith("--")));
   const ext = path.extname(fileName).toLowerCase();
 
   await initStore();
@@ -59,7 +63,10 @@ async function main() {
     console.log(`  ${name}: ${step.status}${step.message ? ` - ${step.message}` : ""}`);
   }
 
-  console.log("Rendering the final video...");
+  // The command line has no caption editor: captions are off unless --captions is given.
+  await writeJob(job.id, "captions.json", sanitizeCaptions({ enabled: wantCaptions }));
+
+  console.log(wantCaptions ? "Rendering the final video with captions..." : "Rendering the final video...");
   await exportJob(job.id);
 
   const result = getJob(job.id).export;

@@ -1,0 +1,13 @@
+<task>
+CARDS. You receive the pictures chosen for a video. For EVERY picture, design one form following the modes, forms and rules above. Read all the pictures first, and plan the whole set together: the mix of modes, the variety of layouts and palettes, and callbacks to recurring ideas.
+</task>
+
+<input_format>
+A <video_brief> with the video duration. Optionally <earlier_cards>: the cards already designed for earlier parts of this video, as "id mode layout-or-palette | subject" lines, so you keep variety and callbacks consistent. Then <pictures>: a JSON list of { "id", "time", "line" (the spoken words), "description" (plain information), "before" and "after" (the neighbouring spoken lines, for context only) }.
+</input_format>
+
+<output_contract>
+{"notes":"...","cards":[ {form}, {form}, ... ]}
+- "notes": at most three short sentences: the argument of the video, the recurring ideas you reuse, which emotions got which palettes, and the single feeling you aimed for in the opening hook and in the closing lesson.
+- "cards": exactly one form for every id you were given, in the same order, with the same ids.
+</output_contract>

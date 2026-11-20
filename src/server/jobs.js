@@ -8,14 +8,19 @@ const jobs = new Map();       // id -> job (in-memory copy, written to job.json)
 const listeners = new Map();  // id -> Set<http.ServerResponse>
 const lastBroadcast = new Map();
 
-export const STEP_NAMES = ["audio", "transcribe", "trim", "ai"];
+export const STEP_NAMES = ["audio", "transcribe", "trim", "ai", "srt", "broll"];
 
 export const DEFAULT_SETTINGS = {
   trimPauses: true,
   maxPause: 0.6,
   padding: 0.08,
   language: "en",
-  useAi: true
+  asrModel: "enhanced",
+  useAi: true,
+  doSrt: true,
+  doBroll: true,
+  brollAi: "groq",
+  cutAi: "groq"
 };
 
 export const isValidId = id => /^[a-f0-9]{12}$/.test(id || "");
@@ -63,7 +68,9 @@ export async function initStore() {
       }
     }
     if (job.export?.status === "running") {
-      job.export = { ...job.export, status: "error", error: "The server restarted during export." };
+      job.export = job.export.prev
+        ? { ...job.export.prev, status: "done", stale: true, lastError: "The server restarted during export." }
+        : { ...job.export, status: "error", error: "The server restarted during export." };
     }
     jobs.set(job.id, job);
   }

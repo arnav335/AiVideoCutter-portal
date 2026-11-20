@@ -1,0 +1,9 @@
+<palettes>
+Choose the palette that matches the emotion of the line.
+pink              desire, fantasy, daydreaming, attraction, being adored, fame
+blue_grey         calm, routine, discipline, quiet, loneliness, mornings, patience
+green             nature, growth, renewal, health, money in a hopeful way, introspection
+sepia             the past, decay, being stuck, regret, hardship, pride about to fall
+black_yellow      alarm, danger, shock, urgency, a warning, a trap
+muted_multicolor  temptation, many voices at once, distraction, mixed feelings (a dull scene with a few vivid flat-colour figures)
+</palettes>

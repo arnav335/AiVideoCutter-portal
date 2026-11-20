@@ -38,6 +38,7 @@ export async function transcribeAudio({
   inputPath,
   apiKey = process.env.SPEECHMATICS_API_KEY,
   language = "en",
+  model = "enhanced",
   onStatus
 } = {}) {
   if (!apiKey) {
@@ -46,6 +47,10 @@ export async function transcribeAudio({
 
   await fs.access(inputPath);
 
+  // "melia-1" is the multilingual model (Hindi, Hinglish, mixed languages): it takes the language "multi".
+  const asrModel = model === "melia-1" ? "melia-1" : "enhanced";
+  const asrLanguage = asrModel === "melia-1" ? "multi" : language;
+
   const client = new BatchClient({ apiKey, appId: "AiVideoCutter" });
 
   onStatus?.("Uploading audio to Speechmatics...");
@@ -53,7 +58,7 @@ export async function transcribeAudio({
   const blob = await openAsBlob(inputPath);
   const file = new File([blob], path.basename(inputPath));
 
-  onStatus?.("Transcribing...");
+  onStatus?.(`Transcribing (${asrModel === "melia-1" ? "Melia 1, multilingual" : "Enhanced"})...`);
 
   let response;
   try {
@@ -61,8 +66,8 @@ export async function transcribeAudio({
       file,
       {
         transcription_config: {
-          language,
-          model: "enhanced"
+          language: asrLanguage,
+          model: asrModel
         }
       },
       "json-v2"

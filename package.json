@@ -1,11 +1,13 @@
 {
   "name": "aivideocutter",
   "version": "1.0.0",
-  "description": "AiVideoCutter",
+  "description": "The Silent Shears: cut the retakes, keep the best take",
   "main": "src/server/server.js",
   "scripts": {
     "start": "node src/server/server.js",
     "cli": "node src/index.js",
+    "chrome": "node scripts/launch-chrome.cjs",
+    "inspect:claude": "node scripts/inspect-claude.cjs",
     "test": "node --test"
   },
   "keywords": [],
@@ -14,9 +16,13 @@
   "type": "module",
   "dependencies": {
     "@speechmatics/batch-client": "^5.4.2",
-    "dotenv": "^18.0.10"
+    "dotenv": "^18.0.10",
+    "playwright-core": "^1.49.0"
   },
   "engines": {
     "node": ">=20"
+  },
+  "optionalDependencies": {
+    "ffmpeg-static": "^5.2.0"
   }
 }

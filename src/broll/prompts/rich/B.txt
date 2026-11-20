@@ -1,0 +1,27 @@
+<modes>
+Choose exactly one mode per picture.
+ui          card on green. Data and structure: real numbers, comparisons of real amounts, goals with a percentage, lists, choices, X versus Y, formulas, before and after.
+material    card on green. Physical things or materials shown realistically with real textures (steel, porcelain, wood, stone, glass).
+symbol      card on green. One generic icon or one simple line drawing for something that has no logo (a bell for "distraction", two reaching hands for a famous painting).
+scene       FULL FRAME animated illustration. A place, a moment, a person doing something, a story beat, a feeling, or an abstract idea turned into ONE picturable moment or object (a mousetrap baited with a trophy, a person pedalling a bicycle that goes nowhere).
+logo        FULL FRAME brand logo. The line names a brand, platform, company, product, app, channel, or a creator who is known by a brand name (YouTube, MrBeast, Skool, Netflix).
+person      FULL FRAME picture of a named real public person. You choose how: render "animated" (a drawing in the scene art style) or render "real" (a realistic portrait photograph).
+real_image  No drawing. Only when the authentic photo or footage is the point (the actual painting, a real place, a real product demo, a news clip).
+</modes>
+
+<mode_decision>
+Ask these questions in order and stop at the first yes.
+1. Does the line name a brand, platform, company, product, app or channel, and is that name the subject of the line? -> logo.
+   - If the same line states real numbers, a list or a formula, the data card wins and the logo is skipped.
+   - The same brand does not get a second logo within about 30 seconds.
+2. Is the line about a named real public person (their story, behaviour, achievement or lesson)? -> person. Choose the render:
+   - the line is really about their channel, brand or company -> use logo instead (question 1);
+   - animated (the default): living creators and public figures, anything about behaviour, a story or a lesson, and every historical figure who was never photographed;
+   - real: a modern public figure when a believable portrait adds credibility (a founder, an athlete, an author) and a neutral portrait is enough;
+   - when the authentic photo or footage of that person is the point -> real_image.
+3. Is the authentic real-world picture the point of the line? -> real_image with a search_hint.
+4. Does the line state real numbers, amounts, percentages, a comparison of amounts, steps, a list of examples, a formula, a choice between two options, X versus Y, or a before and after? -> ui with the matching layout.
+5. Is it about physical materials or objects where the real texture is the message (steel versus ceramic)? -> material.
+6. Does one generic icon or one simple line drawing say it better than a scene? -> symbol.
+7. Everything else -> scene. This includes feelings, behaviours, stories, historical moments (show the idea behind the event, not a reconstruction), warnings, and abstract ideas such as traps, distractions, myths and "it feels like progress but it is not".
+</mode_decision>

@@ -1,0 +1,24 @@
+<forms>
+Every form has "id" (copy it exactly) and "mode". Every form may have "reason" (max 14 words: why this picture helps the line). Card modes also have "pill" (max 5 words, a small label at the top of the card), optional "pill_dot" (a role) and optional "caption" (max 10 words, small text at the bottom). Every form may also have "psych" (max 12 words, only for you and the editor, never shown in the picture): the viewer feeling you aimed for and the cue you used, for example "fear of missing out: closing door, one figure left behind".
+
+mode ui, optional "hero_icon" (coin, trophy, heart, bell, lock, magnifier, lightbulb, book, globe, chat_bubble, play_button, arrow_up, arrow_down, clock, shield, check, warning): one bold icon in the accent colour next to the main element, for a number or a fact that has a clear symbol (money gets coin). Not for chips, toggles or columns.
+ROLES (the only way to talk about colour on cards): accent (yellow, the main highlight), secondary (coral red, the other side or the negative), muted (grey, less important), text (white).
+
+mode ui, field "layout" is one of:
+  big_number   value_text ("$5,400"), optional sub
+  bars         rows 2 to 5 of {label, value (a real number said in the line), role}
+  milestone    headline, percent (0 to 100), marker_label
+  chips        optional headline, items 2 to 8 of {text, check (true or false), role}
+  list         rows 2 to 5 of {text, role}
+  toggles      rows 2 to 3 of {label, on (true or false), role}
+  columns      left and right, each {heading, text, role}
+  formula      parts (2 to 4 short words), op (for example "x" or "+")
+  before_after before and after, each {label, text}
+
+mode material   either "object" (one object) or "halves": two of {heading, object, role}; optional "texture_notes"
+mode symbol     "icon" (play_button, chat_bubble, heart, bell, magnifier, lock, coin, trophy, book, lightbulb, globe, arrow_up, arrow_down, clock, shield, check, warning, generic) or "line_art" (max 10 words, a simple subject drawn as thick white line art); plus "name" (the text under it) and "icon_role"
+mode scene      "palette", "subject", "action", "setting", "composition", optional "extra", optional "alt_idea" (max 25 words: your runner-up idea). See the scene rules and the creativity rules.
+mode logo       "brand" (lowercase slug like youtube), "display_name" (max 3 words), "kind" (platform, creator, company, product, app or channel), optional "look" (only if you are certain how the logo really looks)
+mode person     "name" (as spoken, max 4 words), "render" ("animated" or "real"), "action" (max 20 words, a neutral moment), "setting" (max 20 words), "composition"; for animated also "palette" and optional "look" (max 25 words: the well-known visual traits you are sure of, such as hairstyle, glasses, beard, signature clothing)
+mode real_image "search_hint" (max 8 words), "pill"
+</forms>

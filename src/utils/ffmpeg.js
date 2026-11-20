@@ -10,7 +10,7 @@ export const SUPPORTED_EXTENSIONS = [...VIDEO_EXTENSIONS, ...AUDIO_EXTENSIONS];
 export async function probeMedia(filePath) {
   const { stdout } = await execFileAsync("ffprobe", [
     "-v", "error",
-    "-show_entries", "stream=codec_type,width,height:format=duration",
+    "-show_entries", "stream=codec_type,width,height:stream_tags=rotate:stream_side_data=rotation:format=duration",
     "-of", "json",
     filePath
   ], { maxBuffer: 5 * 1024 * 1024 });
@@ -19,11 +19,37 @@ export async function probeMedia(filePath) {
   const streams = info.streams || [];
   const duration = Number(info.format?.duration);
 
+  // Size of the picture as it is shown (a phone video stored sideways is turned the right way up).
+  const video = streams.find(s => s.codec_type === "video");
+  let width = Number(video?.width) || 0;
+  let height = Number(video?.height) || 0;
+  const rotation = Math.abs(Number(
+    video?.side_data_list?.find(d => Number.isFinite(Number(d?.rotation)))?.rotation ?? video?.tags?.rotate ?? 0
+  ));
+  if (Math.round(rotation) % 180 === 90) [width, height] = [height, width];
+
   return {
     duration: Number.isFinite(duration) ? duration : 0,
     hasVideo: streams.some(s => s.codec_type === "video"),
-    hasAudio: streams.some(s => s.codec_type === "audio")
+    hasAudio: streams.some(s => s.codec_type === "audio"),
+    width,
+    height
   };
+}
+
+let subtitlesFilter;
+
+// Burning captions in needs an ffmpeg built with libass (it provides the "subtitles" filter).
+export async function hasSubtitlesFilter() {
+  if (subtitlesFilter === undefined) {
+    try {
+      const { stdout } = await execFileAsync("ffmpeg", ["-hide_banner", "-filters"], { maxBuffer: 5 * 1024 * 1024 });
+      subtitlesFilter = /^\s*\S+\s+subtitles\s/m.test(stdout);
+    } catch {
+      subtitlesFilter = false;
+    }
+  }
+  return subtitlesFilter;
 }
 
 let ffmpegMajor;
@@ -44,12 +70,12 @@ export async function filterScriptOption() {
 }
 
 // Run ffmpeg, reporting progress as seconds of OUTPUT produced.
-export function runFfmpeg(args, { onProgress, signal } = {}) {
+export function runFfmpeg(args, { onProgress, signal, cwd } = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(
       "ffmpeg",
       ["-hide_banner", "-nostats", "-progress", "pipe:1", ...args],
-      { stdio: ["ignore", "pipe", "pipe"], signal }
+      { stdio: ["ignore", "pipe", "pipe"], signal, cwd }
     );
 
     let stderrTail = "";

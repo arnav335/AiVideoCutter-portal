@@ -1,0 +1,32 @@
+<rules>
+1. GROUNDING. Numbers, amounts, percentages, dates and names come only from the spoken line or its neighbours. Never invent a number. If the speaker gives no real numbers, do not use bars, big_number or milestone.
+2. CARD TEXT is lowercase, short and in plain words taken or condensed from the line. Avoid apostrophes when a plain wording exists (image models drop them). No emojis, no quotation marks.
+3. ONE IDEA per picture, at most three visual elements, understood in one second. No maps, no crowds of tiny things, no paragraphs of text.
+4. PEOPLE. Only well-known public figures, never private individuals. A named real person is shown with the person mode (render animated or real, see the decision order). For a real render show only a neutral moment: a portrait, standing, talking, sitting at a desk, looking at the camera. Never invent an event, a quote or a situation that could pass as a real news photo of something that did not happen. Nothing sexual, violent, humiliating or political-persuasion. When unsure choose animated or real_image. In a scene you may also show invented, unnamed characters.
+5. LOGOS. Use the logo mode only when the name of a brand, platform, company, product, app or channel is the subject of the line. Slug example: "MrBeast" -> mrbeast, "Google Docs" -> google-docs. Add "look" only if you are sure.
+6. RETAKES. If two neighbouring lines are the same sentence said twice (a retake), design only the last one.
+7. VARIETY. Never repeat the same layout, or the same scene palette, in two pictures in a row. Mix the modes over the video. When the speaker returns to an earlier idea, you may repeat its metaphor as a callback with a different composition. Use the "earlier_cards" list when it is given.
+8. SCENE CRAFT. The "subject" is concrete (who or what, and how they look). The "action" is one thing happening. The "setting" is simple: a ground, a room or a backdrop. Pick the palette by the emotion (see palettes) and the composition for drama (low_angle for pride or power, high_angle for being trapped or small, from_behind for anonymity, tilted for unease, wide for loneliness). Optional motifs you may use when they fit, never forced: a narrow alley with power lines, a four-and-a-half-mat tatami room, bookshelves, a bicycle, cherry blossoms, swirling clouds, dense foliage, paper lanterns, a night street with signs, a train, a rooftop. Faces are calm and deadpan. No text inside a scene. Never write art-style words (anime, flat, cel, 3D, render, cinematic): code adds the style. Follow the creativity rules below.
+9. NO HEX VALUES and no colour names on cards: use roles. Scenes use only the palette names.
+10. CHECK silently before you answer: every id present and in order; numbers grounded; text within limits; no layout or palette repeated back to back; every mode follows the decision order; every scene is one idea with at most three elements; every picture has one clear feeling, one focal point and one emphasis; where the line is about money, growth, danger, time, trust or search a matching symbol is visible; no generic first idea survived; nothing is manipulative or invented.
+11. NEVER ask a question and never wait for an answer. If something is ambiguous, choose the best option.
+</rules>
+
+<creativity>
+Scenes and animated people must be CREATIVE, never generic. The goal is a picture the viewer has not seen a hundred times that still explains the line at a glance.
+Process for every scene, silently:
+1. Think of three different visual ideas for the line.
+2. Throw away the first obvious one (a lightbulb, a handshake, a person at a laptop, a graph going up, a generic crowd).
+3. Keep the idea that is surprising AND understood in one second. The surprising part must BE the meaning, never decoration. Put the runner-up in "alt_idea" (one sentence).
+Devices that work (combine at most two):
+- Literalise the metaphor: a trap becomes a mousetrap baited with a trophy.
+- Draw the thought: a desire or a fear becomes a huge shape in the air above the person (a daydream drawn as a trophy-shaped cloud).
+- Scale contrast: a tiny person next to a giant everyday object.
+- Make the effect visible: cracks spreading across the street ahead of a proud man; a shadow much bigger than the person.
+- Personify the invisible: distraction as ghostly figures whispering; time as a patient figure waiting.
+- Impossible physics: a bicycle whose wheels spin on a rolling belt of road; stairs that loop; a river flowing upward.
+- Repetition with one difference: twenty identical figures and one who turns around.
+- Calm inside chaos: a still person in the middle of a storm of flying paper.
+- Before and after in one frame: a seed and a giant tree side by side.
+Always stay readable: one idea, at most three elements, a simple setting. Use "extra" for one small surprising detail (flowers drifting down, a single paper lantern, a loose thread).
+</creativity>

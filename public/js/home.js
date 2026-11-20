@@ -1,10 +1,11 @@
-import { h, icon, toast, fmtBytes, fmtDate } from "./dom.js";
+import { h, icon, toast, fmtBytes, fmtDate, brandMark } from "./dom.js";
 import { api } from "./api.js";
 import { fmtClock } from "/shared/editModel.js";
+import { DESKS, getTheme, setTheme, getDesk, setDesk } from "./theme.js";
 
 export function topbar(...extra) {
   return h("header", { class: "topbar" },
-    h("a", { class: "brand", href: "#/" }, h("span", { class: "brand-mark" }), "AiVideoCutter"),
+    h("a", { class: "brand", href: "#/" }, brandMark(30), "The Silent Shears"),
     ...extra
   );
 }
@@ -26,7 +27,7 @@ export async function mountHome(root) {
   const fileInput = h("input", { type: "file", hidden: true, accept: config.extensions.join(",") + ",video/*,audio/*" });
   const dropBody = h("div", {});
   const drop = h("div", { class: "drop", tabindex: "0", role: "button", "aria-label": "Choose a video or audio file" }, dropBody);
-  const startBtn = h("button", { class: "btn primary", disabled: true }, "Process recording");
+  const startBtn = h("button", { class: "btn primary big", disabled: true }, icon("sparkles", 18), "Start cutting");
   const startLabel = h("span", { class: "hint" }, "");
   const bar = h("div", { class: "progress", hidden: true }, h("i", {}));
 
@@ -36,7 +37,7 @@ export async function mountHome(root) {
         ? [h("span", { class: "file-chip" }, icon("film"), file ? file.name : inputName,
             h("span", { class: "muted" }, file ? fmtBytes(file.size) : ""))
           , h("span", { class: "hint" }, "Click to choose a different file")]
-        : [icon("film", 30), h("strong", {}, "Drop a recording here"), h("span", {}, "or click to browse · MP4, MOV, MKV, WebM, MP3, WAV, M4A")])
+        : [h("span", { class: "drop-ico" }, icon("upload", 28)), h("strong", {}, "Drop your recording here"), h("span", {}, "or click to browse your files"), h("span", { class: "hint" }, "Works with MP4, MOV, MKV, WebM, MP3, WAV and M4A")])
     );
     startBtn.disabled = busy || !(file || inputName);
     inputChips.forEach(([name, chip]) => chip.setAttribute("aria-pressed", String(name === inputName)));
@@ -60,32 +61,89 @@ export async function mountHome(root) {
   }, f.name)]);
 
   // options
-  const trimOn = h("input", { type: "checkbox", class: "switch", checked: true });
-  const maxPause = h("input", { class: "field num", type: "number", min: "0.1", max: "5", step: "0.1", value: "0.6" });
-  const padding = h("input", { class: "field num", type: "number", min: "0", max: "0.5", step: "0.01", value: "0.08" });
-  const language = h("input", { class: "field", value: "en", maxlength: "6" });
-  const aiOn = h("input", { type: "checkbox", class: "switch", checked: config.groq, disabled: !config.groq });
-  const options = h("div", { class: "options" },
-    h("label", { class: "switch-row" }, trimOn, "Remove long silences first"),
-    h("div", { class: "row" },
-      h("label", { class: "stack" }, "Longest pause kept (s)", maxPause),
-      h("label", { class: "stack" }, "Padding (s)", padding),
-      h("label", { class: "stack" }, "Spoken language", language)),
-    h("label", { class: "switch-row" }, aiOn,
-      config.groq ? `AI marks the retakes (${config.groqModel})` : "AI marks the retakes (needs GROQ_API_KEY)")
-  );
-  trimOn.addEventListener("change", () => {
-    maxPause.disabled = padding.disabled = !trimOn.checked;
-  });
+  // Fixed defaults (the old switches were removed from the start page): long silences are trimmed, language is English.
+  const TRIM = { trimPauses: true, maxPause: 0.6, padding: 0.08, language: "en" };
+  // Shown only when there is no Groq key and Groq is the chosen cut AI.
+  const keyBanner = h("div", { class: "banner" }, icon("alert"),
+    h("span", {}, "No ", h("code", {}, "GROQ_API_KEY"), " found. You can still cut by hand, but nothing will be marked automatically."));
+  // One main AI for everything (cuts + B-roll): Claude (claude.ai in Chrome, no key) or Groq (API key). Claude is the default.
+  let mainAi = "claude";
+  try { if (localStorage.getItem("mainAi") === "groq") mainAi = "groq"; } catch { /* storage may be blocked */ }
+  const mainHint = h("p", { class: "hint ai-hint" });
+  const launchBtn = h("button", { type: "button", class: "btn", onclick: async () => {
+    try {
+      await api.brollGlobalPost("chrome", { claude: true });
+      launchBtn.textContent = "Starting…";
+      setTimeout(() => { launchBtn.textContent = "Launch Chrome"; }, 4000);
+    } catch (e) { toast(e.message, "error"); }
+  } }, "Launch Chrome");
+  const mainBtns = ["claude", "groq"].map(id => h("button", { type: "button", class: "seg-btn", dataset: { main: id },
+    onclick: () => { mainAi = id; try { localStorage.setItem("mainAi", id); } catch { /* ignore */ } paintMain(); } }, id === "groq" ? "Groq" : "Claude"));
+  function paintMain() {
+    mainBtns.forEach(b => b.classList.toggle("on", b.dataset.main === mainAi));
+    const claude = mainAi === "claude";
+    mainHint.textContent = claude
+      ? "Uses your claude.ai chat in Chrome (no API key). Launch Chrome, sign in to claude.ai once, then press Start."
+      : config.groq ? `Uses your Groq API key (${config.groqModel}).` : "Uses your Groq API key. GROQ_API_KEY is not set yet.";
+    launchBtn.hidden = !claude;
+    keyBanner.hidden = claude || config.groq;
+  }
+  paintMain();
+  const aiPick = h("div", { class: "ai-pick" }, h("strong", {}, "Main AI"), h("span", { class: "seg" }, mainBtns), mainHint, launchBtn);
+  // Speech model: Enhanced (best for one language, e.g. English) or Melia 1 (Hindi / mixed languages). Remembered.
+  let asrModel = "enhanced";
+  try { if (localStorage.getItem("asrModel") === "melia-1") asrModel = "melia-1"; } catch { /* storage may be blocked */ }
+  const asrHint = h("p", { class: "hint ai-hint" });
+  const ASR = [["enhanced", "Enhanced"], ["melia-1", "Melia 1 (Hindi)"]];
+  const asrBtns = ASR.map(([id, label]) => h("button", { type: "button", class: "seg-btn", dataset: { asr: id },
+    onclick: () => { asrModel = id; try { localStorage.setItem("asrModel", id); } catch { /* ignore */ } paintAsr(); } }, label));
+  function paintAsr() {
+    asrBtns.forEach(b => b.classList.toggle("on", b.dataset.asr === asrModel));
+    asrHint.textContent = asrModel === "melia-1"
+      ? "Made for Hindi and mixed Hindi and English."
+      : "Best accuracy for one language, English by default.";
+  }
+  const asrPick = h("div", { class: "ai-pick" }, h("strong", {}, "Transcription model"), h("span", { class: "seg" }, asrBtns), asrHint);
+  // Look of the app: the soft dark theme or the retro old-computer theme (with a choice of desktop colour).
+  let theme = getTheme();
+  const themeHint = h("p", { class: "hint ai-hint" });
+  const themeBtns = [["dark", "Soft dark"], ["retro", "Retro computer"]].map(([id, label]) => h("button", { type: "button", class: "seg-btn", dataset: { theme: id },
+    onclick: () => { theme = id; setTheme(id); paintTheme(); } }, label));
+  const deskBtns = DESKS.map(([id, label, color]) => h("button", { type: "button", class: "desk-swatch", title: `${label} desktop`, "aria-label": `${label} desktop`, dataset: { desk: id },
+    style: { background: color, width: "28px", height: "28px", border: "2px solid currentColor", padding: "0", cursor: "pointer" },
+    onclick: () => { setDesk(id); paintTheme(); } }));
+  const deskRow = h("span", { class: "desk-row", style: { display: "inline-flex", alignItems: "center", gap: "8px" } }, h("span", { class: "hint" }, "Desktop"), ...deskBtns);
+  function paintTheme() {
+    themeBtns.forEach(b => b.classList.toggle("on", b.dataset.theme === theme));
+    deskBtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.desk === getDesk())));
+    deskRow.hidden = theme !== "retro";
+    themeHint.textContent = theme === "retro"
+      ? "An old-computer look: cream windows, pixel type and a CRT monitor frame."
+      : "The soft dark look.";
+  }
+  paintTheme();
+  const themePick = h("div", { class: "ai-pick" }, h("strong", {}, "Theme"), h("span", { class: "seg" }, themeBtns), deskRow, themeHint);
+  const options = h("details", { class: "options" },
+    h("summary", {}, icon("sliders", 18), "Settings", h("small", {}, "Optional. The defaults work well.")),
+    h("div", { class: "opt-body" },
+      themePick,
+      asrPick,
+      aiPick));
+  paintAsr();
 
   startBtn.addEventListener("click", async () => {
     busy = true; startBtn.disabled = true; bar.hidden = false;
     const settings = {
-      trimPauses: trimOn.checked,
-      maxPause: Number(maxPause.value) || 0.6,
-      padding: Number(padding.value) || 0,
-      language: language.value.trim() || "en",
-      useAi: aiOn.checked
+      trimPauses: TRIM.trimPauses,
+      maxPause: TRIM.maxPause,
+      padding: TRIM.padding,
+      language: TRIM.language,
+      asrModel,
+      useAi: mainAi === "claude" || config.groq,   // the AI step is always on when the main AI can run
+      doSrt: true, // always on: the .srt is offered for download when everything is done
+      brollAi: mainAi,
+      cutAi: mainAi,
+      doBroll: config.groq || config.gemini || mainAi === "claude"
     };
     try {
       startLabel.textContent = "Creating project…";
@@ -106,8 +164,7 @@ export async function mountHome(root) {
   const warnings = [];
   if (!config.speechmatics) warnings.push(h("div", { class: "banner" }, icon("alert"),
     h("span", {}, "Add ", h("code", {}, "SPEECHMATICS_API_KEY"), " to your .env file and restart, or transcription will fail.")));
-  if (!config.groq) warnings.push(h("div", { class: "banner" }, icon("alert"),
-    h("span", {}, "No ", h("code", {}, "GROQ_API_KEY"), " found. You can still cut by hand, but nothing will be marked automatically.")));
+  if (!config.groq) warnings.push(keyBanner);
 
   const list = jobs.length
     ? h("div", { class: "project-list" }, jobs.map(job => {
@@ -117,11 +174,13 @@ export async function mountHome(root) {
           onclick: () => { location.hash = `#/p/${job.id}`; },
           onkeydown: e => { if (e.key === "Enter") location.hash = `#/p/${job.id}`; }
         },
+          h("span", { class: "thumb" }, icon("film", 20)),
           h("span", { class: "name" }, job.name),
           h("span", { class: "sub num" },
-            [job.source?.duration ? fmtClock(job.source.duration, 0) : null, fmtDate(job.updatedAt)].filter(Boolean).join(" · ")),
+            [job.source?.duration ? fmtClock(job.source.duration, 0) : null, fmtDate(job.updatedAt)].filter(Boolean).join(" · "),
+            h("span", { class: `badge ${kind}` }, label)),
           h("span", { class: "side" },
-            h("span", { class: `badge ${kind}` }, label),
+            h("span", { class: "btn small project-open", "aria-hidden": "true" }, job.state === "review" ? "Open" : "View"),
             h("button", {
               class: "btn quiet small square", title: "Delete project", "aria-label": `Delete ${job.name}`,
               onclick: async e => {
@@ -132,22 +191,34 @@ export async function mountHome(root) {
             }, icon("trash")))
         );
       }))
-    : h("div", { class: "empty" }, "No projects yet. Your first one will show up here.");
+    : h("div", { class: "empty" }, icon("folder", 26), h("b", {}, "No projects yet"), h("span", {}, "Drop in your first recording and it will show up here."));
+
+  const how = [
+    ["upload", "Add a recording", "Any video or audio file."],
+    ["sparkles", "AI finds retakes", "It marks stumbles and repeats."],
+    ["eye", "You decide", "Keep or cut each one."],
+    ["download", "Export", "Download the clean video."]
+  ];
 
   root.replaceChildren(
     topbar(),
     h("div", { class: "page" }, h("div", { class: "home" },
-      h("section", {},
-        h("h1", {}, "Keep the best take."),
-        h("p", { class: "lede" }, "Drop in a raw recording. The AI marks the retakes and stumbles, you review every cut, then export the trimmed video."),
-        ...warnings,
-        drop, fileInput,
-        inputs.length ? h("div", { class: "inputs" }, h("span", { class: "hint" }, "From the input folder:"), inputChips.map(c => c[1])) : null,
-        options,
-        h("div", { style: { display: "flex", gap: "12px", alignItems: "center", marginTop: "16px" } }, startBtn, startLabel),
-        h("div", { style: { marginTop: "10px" } }, bar)
-      ),
-      h("section", {}, h("h2", {}, "Projects"), list)
+      h("section", { class: "hero" },
+        h("h1", {}, "Keep the best take, ", h("span", {}, "lose the rest.")),
+        h("p", { class: "lede" }, "Drop in a raw recording. The AI marks the retakes and stumbles, you check each cut, and you export a clean video.")),
+      h("ol", { class: "how" }, how.map(([ic, title, text]) =>
+        h("li", {}, h("span", { class: "ico" }, icon(ic, 20)), h("div", {}, h("b", {}, title), h("span", { class: "t" }, text))))),
+      h("div", { class: "home-grid" },
+        h("section", { class: "card" },
+          h("div", { class: "card-head" }, h("h2", {}, "New project")),
+          ...warnings,
+          drop, fileInput,
+          inputs.length ? h("div", { class: "inputs" }, h("span", { class: "hint" }, "Or pick from the input folder:"), inputChips.map(c => c[1])) : null,
+          options,
+          h("div", { class: "start-row" }, startBtn, bar, startLabel)),
+        h("section", { class: "card" },
+          h("div", { class: "card-head" }, h("h2", {}, "Your projects"), h("span", { class: "count" }, jobs.length ? `${jobs.length} total` : "")),
+          list))
     ))
   );
   renderDrop();

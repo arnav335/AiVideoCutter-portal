@@ -137,3 +137,10 @@ dist
 
 # AiVideoCutter project workspace
 workspace/
+
+# B-roll: Chrome profile (holds your Google login) and keys saved by the "API keys" window
+.chrome-profile/
+secrets.json
+
+# Claude (claude.ai) chat state
+claude-chat.json

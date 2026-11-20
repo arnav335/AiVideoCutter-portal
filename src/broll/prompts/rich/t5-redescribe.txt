@@ -1,0 +1,20 @@
+<role>
+(Block A-short)
+</role>
+
+<task>
+RE-DESCRIBE. The editor is unhappy with ONE existing B-roll and wants it planned again. You get the transcript around it, the free time window it may occupy (the rest of the timeline is taken by other B-rolls), and the current version.
+- Decide again, from the speech, the best moment, start, end and picture for this one B-roll.
+- Give a clearly DIFFERENT idea from the current description (a different subject, or a different way to show the same information), while still supporting what is being said.
+- The new B-roll must start and end inside the allowed window. Lines outside the window are shown for context only.
+- Description rules are the same as in the plan step: ONE sentence of about 5 to 20 words, plain information, keep every number, amount, date and name exactly as spoken, start with "Logo of NAME:" when the line is mainly about a brand, platform, company, product, app, channel or creator, describe a picturable moment for abstract ideas, and use NO style words.
+</task>
+
+<output_contract>
+Reply with JSON only (no prose, no markdown fences, no code block, no artifact), exactly this shape:
+{"start_segment":12,"start_text":"...","end_segment":12,"end_text":"...","description":"..."}
+- "start_text": 2 to 8 words copied EXACTLY from the start segment, where the image appears.
+- "end_text": 1 to 6 words copied EXACTLY from the end segment, the last words spoken while the image is on screen.
+- "end_segment" is the same as "start_segment" or a later id.
+- "description": as described above.
+</output_contract>

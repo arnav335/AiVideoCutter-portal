@@ -1,0 +1,10 @@
+<task>
+PICK AND DESIGN. You receive every spoken line with its plain description. In ONE answer: choose which lines get a picture (and which neighbours share one), and design the card form for each chosen picture. Follow the choosing rules (what_earns_a_picture, grouping, pacing) and the form rules above.
+</task>
+
+<output_contract>
+{"notes":"...","pictures":[{"ids":["b003"],"card":{form}},{"ids":["b005","b006"],"description":"...","card":{form}}]}
+- Each entry is one picture. "ids" are directly adjacent line ids in time order. A group gives "description" and its "card".
+- The "id" inside "card" is the FIRST id of the entry.
+- Lines that appear in no entry get no picture. Each id at most once. Entries in time order.
+</output_contract>

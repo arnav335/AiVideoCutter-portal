@@ -42,7 +42,19 @@ const ICONS = {
   next: '<path d="M5 4.5 15 12 5 19.5z" fill="currentColor" stroke="none"/><path d="M19 5v14"/>',
   prev: '<path d="M19 4.5 9 12l10 7.5z" fill="currentColor" stroke="none"/><path d="M5 5v14"/>',
   close: '<path d="M18 6 6 18M6 6l12 12"/>',
-  keys: '<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6.5 10h.01M10.5 10h.01M14.5 10h.01M18 10h.01M7 14h10"/>'
+  keys: '<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6.5 10h.01M10.5 10h.01M14.5 10h.01M18 10h.01M7 14h10"/>',
+  key: '<circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2M16 7l3 3M14 9l2 2"/>',
+  upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/>',
+  sparkles: '<path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/>',
+  mic: '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/>',
+  wave: '<path d="M3 12h1M7 8v8M11 4v16M15 8v8M19 10v4M22 12h-1"/>',
+  clock: '<circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/>',
+  folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  sliders: '<path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2.5"/><circle cx="9" cy="12" r="2.5"/><circle cx="17" cy="18" r="2.5"/>',
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  external: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>'
 };
 
 export function icon(name, size = 16) {
@@ -51,6 +63,19 @@ export function icon(name, size = 16) {
   span.innerHTML =
     `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" ` +
     `stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
+  return span;
+}
+
+// The little logo: a soft gradient tile with a pair of scissors.
+export function brandMark(size = 30) {
+  const span = document.createElement("span");
+  span.className = "brand-mark";
+  span.innerHTML =
+    `<svg width="${size}" height="${size}" viewBox="0 0 32 32" aria-hidden="true">` +
+    `<defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3adff"/><stop offset="1" stop-color="#ff9ccb"/></linearGradient></defs>` +
+    `<rect width="32" height="32" rx="10" fill="url(#bm)"/>` +
+    `<g fill="none" stroke="#2a1f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">` +
+    `<circle cx="10.5" cy="21.5" r="2.8"/><circle cx="10.5" cy="10.5" r="2.8"/><path d="M12.6 12.6 23.5 21.5M12.6 19.4 23.5 10.5"/></g></svg>`;
   return span;
 }
 

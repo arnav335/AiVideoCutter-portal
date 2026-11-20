@@ -1,0 +1,64 @@
+<role>
+(Block A-short)
+</role>
+
+<task>
+PLAN. Read the whole timed transcript first, so you understand what the video is about and how its argument develops. Then write, for EVERY numbered segment, what a cutaway picture for that segment would show.
+</task>
+
+<input>
+The transcript comes from a word-level SRT file, grouped into numbered segments:
+  [id] start-end spoken text
+"id" is the segment number. "start" and "end" are m:ss.s timestamps in the video. The timing is accurate: trust it. Segments are consecutive pieces of one continuous speech. Read them in order, as a viewer would hear them.
+</input>
+
+<what_you_decide>
+EVERY numbered segment (line) MUST get an entry. You never skip a line, not even a greeting, a transition, a sign-off, filler, a call to action or an opinion. If a line has nothing obvious to show, describe the simplest fitting stand-in: the place or object the line is about, or a person speaking. You decide:
+1. WHAT each B-roll shows.
+2. Whether a long line is split into 2 or 3 consecutive B-rolls (only when it has distinct sub-ideas, or lasts more than about 8 seconds).
+3. Where each split inside a line starts and ends.
+</what_you_decide>
+
+<how_to_decide>
+1. Go through the segments one by one, in order, from the first to the last. Do not jump ahead and do not leave any out.
+2. Every segment gets at least one B-roll. Never merge two segments into one B-roll: each segment has its own B-roll(s).
+3. The first B-roll of a segment starts when the segment starts. Extra B-rolls inside the same segment start at the words where the next sub-idea begins. The last B-roll of a segment ends at the end of that segment's last sentence or clause.
+4. Never let one image run across two segments. Avoid flicker: no B-roll shorter than about 1.5 seconds.
+5. B-rolls never overlap, and together they cover the WHOLE transcript from the first segment to the last, with no line missing.
+6. DESCRIBE what the picture must communicate as plain INFORMATION taken from the spoken words, in ONE sentence of about 5 to 20 words.
+   - Keep every number, amount, percentage, date and name exactly as spoken (brands, platforms, channels, creators). The next steps need them.
+   - If the line is mainly about a brand, platform, company, product, app, channel or creator, start the description with "Logo of NAME:" (example: "Logo of YouTube: where the video is posted").
+   - If the line states real numbers or a comparison, say what is compared and the numbers.
+   - For feelings, behaviours, stories and abstract ideas, describe the one picturable moment or object that expresses the idea (example: "A person daydreaming about a trophy instead of working").
+   - Say only what the speaker says or directly implies. NO style or aesthetics of any kind: no mood, colour, lighting, camera, art style, and no words like beautiful, dramatic or cinematic. No text or captions.
+7. If a segment repeats the previous segment's sentence (a retake), give both the same description.
+</how_to_decide>
+
+<output_contract>
+Reply with JSON only (no prose, no markdown fences, no code block, no artifact), exactly this shape:
+{"broll":[{"start_segment":12,"start_text":"...","end_segment":12,"end_text":"...","description":"..."}]}
+- "start_segment": id of the segment where the B-roll starts.
+- "start_text": 2 to 8 words copied EXACTLY (same spelling, same order) from that segment: the words at which the image appears.
+- "end_segment": id of the segment where it ends (same as start_segment, or a later one).
+- "end_text": 1 to 6 words copied EXACTLY from the end segment: the LAST words spoken while the image is still on screen.
+- "description": see rule 6.
+- Entries are in time order and never overlap. Every segment id you were given must appear as "start_segment" in at least one entry. An empty list is never a valid answer.
+</output_contract>
+
+<example>
+Input:
+[3] 0:08.2-0:13.9 Engineers used more than eighteen thousand iron parts and two and a half million rivets to build it.
+[4] 0:14.0-0:17.6 But honestly, the best part is seeing it sparkle at night.
+[5] 0:17.7-0:21.0 I filmed it and put it on YouTube last week.
+Output:
+{"broll":[{"start_segment":3,"start_text":"eighteen thousand iron parts","end_segment":3,"end_text":"million rivets","description":"Iron beams joined with thousands of rivets: 18,000 iron parts and 2.5 million rivets."},{"start_segment":4,"start_text":"sparkle at night","end_segment":4,"end_text":"at night","description":"The Eiffel Tower lit up at night."},{"start_segment":5,"start_text":"put it on YouTube","end_segment":5,"end_text":"last week","description":"Logo of YouTube: where the video was posted."}]}
+</example>
+
+<final_check>
+Do this silently before answering.
+- COVERAGE: go through the segment ids you were given one by one; each one has at least one entry. Add the ones you missed.
+- Every start_text and end_text appears verbatim in its segment.
+- Entries are in time order, nothing overlaps, ids are within the range you were given.
+- Every description is one sentence of plain information, keeps numbers and names, and has no style words.
+- Your reply starts with { and ends with }.
+</final_check>

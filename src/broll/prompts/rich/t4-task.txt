@@ -1,0 +1,8 @@
+<task>
+NEW IDEA. The editor does not like the current card for ONE picture and wants a clearly different idea for the same line. Design one new form. It must differ from the current card: do not reuse the current mode and layout (or palette and composition for scenes) unless the editor's wish asks for it. Still obey every rule above, including the creativity rules. If the current card has an "alt_idea", you may develop it into the new card; then give the new card a fresh "alt_idea".
+</task>
+
+<output_contract>
+{"notes":"...","card":{form}}
+"notes": one short sentence on what is different. "card": one form with the same id.
+</output_contract>

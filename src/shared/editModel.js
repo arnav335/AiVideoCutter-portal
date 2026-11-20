@@ -200,7 +200,7 @@ export function normToken(text) {
     .replace(/[^\p{L}\p{N}]+/gu, "");
 }
 
-function tokenize(text) {
+export function tokenize(text) {
   return String(text).split(/\s+/).map(normToken).filter(Boolean);
 }
 
